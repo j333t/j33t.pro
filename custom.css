@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Tech Backbone for Businesses · J33T</title>
+
+<link rel="stylesheet" href="custom.css"/>
+<script defer src="custom.js"></script>
+</head><body>
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/">CraftyCrow</a>
+    <nav class="links">
+      <a href="#/">Home</a>
+      <a href="#/work">Work</a>
+      <a href="#/systems">Systems</a>
+      <a href="#/training">Training</a>
+      <a href="#/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="site-main">
+  <!-- hero (optional) -->
+  <section class="hero">
+    <div class="rings"></div>
+    <div class="hero-in">
+      <p class="eyebrow">I create systems for businesses</p>
+      <h1>Tech Backbone<br/>for Businesses</h1>
+      <p class="sub">J33T (aka Jeet Shah) · Owner, Crafty Crow</p>
+      <p class="cta">
+        <a class="btn primary" href="#/contact">Get in touch</a>
+        <a class="btn" href="#/about">Learn more</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Docsify renders markdown here -->
+  <div id="app"></div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div>
+      <div class="mini">Let’s work together on something smart.</div>
+      <div class="legal">© 2025 · Terms · Privacy</div>
+    </div>
+    <div>
+      <div class="mini">Contact</div>
+      <ul>
+        <li><a href="mailto:connect@j33t.pro">connect@j33t.pro</a></li>
+        <li><a href="tel:+918092021020">+91 80920 21020</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="mini">Follow</div>
+      <ul>
+        <li><a href="https://twitter.com/">Twitter</a></li>
+        <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.$docsify = {
+  name: 'J33T',
+  loadSidebar: true,
+  subMaxLevel: 2,
+  routerMode: 'hash',     // keeps nav links working
+  executeScript: true,    // allow embeds/scripts inside md
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+</body></html>
