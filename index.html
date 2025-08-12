@@ -25,6 +25,7 @@
         <a href="#/contact">Contact</a>
         <a href="https://buttondown.com/j33t/archive" target="_blank" rel="noopener">Articles ↗</a>
       </nav>
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">🌓</button>
     </div>
   </header>
 
@@ -68,23 +69,34 @@
   <script src="https://unpkg.com/docsify@4/lib/docsify.min.js"></script>
 
   <!-- Minimal JS: mobile toggle + active link -->
-  <script>
-    // mobile menu toggle
-    document.addEventListener('click', e => {
-      if (e.target.closest('.nav-toggle')) document.body.classList.toggle('nav-open');
-      if (e.target.matches('.links a')) document.body.classList.remove('nav-open');
-    });
+<script>
+  // mobile menu toggle
+  document.addEventListener('click', e => {
+    if (e.target.closest('.nav-toggle')) document.body.classList.toggle('nav-open');
+    if (e.target.matches('.links a')) document.body.classList.remove('nav-open');
+  });
 
-    // highlight active nav link
-    function setActive() {
-      const cur = (location.hash.split('?')[0] || '#/').replace(/\/$/, '');
-      document.querySelectorAll('.links a').forEach(a => {
-        const href = a.getAttribute('href').replace(/\/$/, '');
-        a.classList.toggle('active', href === cur);
-      });
-    }
-    window.addEventListener('hashchange', setActive);
-    window.addEventListener('load', setActive);
-  </script>
+  // highlight active nav link
+  function setActive() {
+    const cur = (location.hash.split('?')[0] || '#/').replace(/\/$/, '');
+    document.querySelectorAll('.links a').forEach(a => {
+      const href = a.getAttribute('href').replace(/\/$/, '');
+      a.classList.toggle('active', href === cur);
+    });
+  }
+  addEventListener('hashchange', setActive);
+  addEventListener('load', setActive);
+
+  // theme toggle (persists)
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? '' : 'dark';
+    if (next) root.setAttribute('data-theme', next); else root.removeAttribute('data-theme');
+    localStorage.setItem('theme', next);
+  });
+</script>
+
 </body>
 </html>
