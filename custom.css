@@ -9,8 +9,10 @@
   --brand:#0BA66C; --brand-ink:#ffffff;
   --card:#fafafa; --shadow:0 8px 28px rgba(16,18,19,.08);
   --w:1140px;
-  --rings-gif:none;   /* set to url('hero.gif') */
-  --footer-gif:none;  /* set to url('footer.gif') */
+
+  /* GIFs */
+  --rings-gif: url('https://cdn.dribbble.com/userupload/26113566/file/original-0a72039331f6e87602d36b2e2177448f.gif');
+  --footer-gif: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3Ywajc0OHhzdjZ6b3RwN3hlcTl3M2NtcmZoaDF2eWthb2l3c2Q3biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OT5ByEWG2cwUAQVom2/giphy.gif');
 }
 
 /* ---------- Dark mode tokens ---------- */
@@ -99,7 +101,6 @@ h2.section-title {
   .nav-toggle { display: inline-block; }
 }
 
-
 /* ---------- Hero (GIF + soft overlay) ---------- */
 .hero { position: relative; padding: 84px 0 56px; overflow: hidden }
 .hero::before {
@@ -111,6 +112,17 @@ h2.section-title {
   content:""; position:absolute; inset:0 0 auto 0; height: 580px;
   background: linear-gradient(to bottom, color-mix(in oklab, var(--bg) 75%, transparent), color-mix(in oklab, var(--bg) 95%, transparent));
 }
+/* Dark mode: invert hero GIF for better blend */
+:root[data-theme="dark"] .hero::before {
+  filter: invert(1) hue-rotate(180deg) saturate(.9) contrast(1.02);
+}
+:root[data-theme="dark"] .hero::after {
+  background: linear-gradient(to bottom,
+    color-mix(in oklab, var(--bg) 82%, transparent),
+    color-mix(in oklab, var(--bg) 96%, transparent)
+  );
+}
+
 .hero-in { position: relative; z-index: 1; text-align: center }
 .cta .btn { margin-right: 8px }
 
@@ -170,11 +182,6 @@ details + details { margin-top: 10px }
 #app { max-width: var(--w); margin: 0 auto }
 .section { max-width: var(--w) }
 .btn { border-radius: 12px }
-
-/* Utility: hide hero media if no GIF set */
-.hero::before { display: var(--rings-gif, none) }
-.site-foot::before { display: var(--footer-gif, none) }
-
 
 /* === NAV OVERRIDES (force visibility) === */
 .links{display:flex !important; gap:14px; margin-left:auto}
