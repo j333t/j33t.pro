@@ -79,6 +79,14 @@ h2.section-title {
   border-bottom: 1px solid color-mix(in oklab, var(--edge) 80%, transparent);
 }
 .site-nav .wrap { display: flex; align-items: center; gap: 16px; min-height: 60px }
+.brand img {
+  display: block;
+  height: 32px; /* adjust as needed */
+  width: auto;
+}
+@media (max-width: 760px) {
+  .brand img { height: 28px; }
+}
 .brand { font-weight: 800; letter-spacing: .2px; color: var(--ink) }
 .links { display: flex; gap: 14px; margin-left: auto }
 .links a { color: color-mix(in oklab, var(--ink) 80%, transparent); padding: 8px 6px; border-radius: 8px }
@@ -102,7 +110,18 @@ h2.section-title {
 }
 
 /* ---------- Hero (GIF + soft overlay) ---------- */
-.hero { position: relative; padding: 84px 0 56px; overflow: hidden }
+.hero {
+  position: relative;
+  min-height: 100vh; /* fallback */
+  min-height: 100dvh; /* preferred */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 84px 0 56px;
+  overflow: hidden;
+}
+
+
 .hero::before {
   content:""; position:absolute; inset:-20% -10% auto -10%; height: 580px;
   background: var(--rings-gif) center/cover no-repeat;
