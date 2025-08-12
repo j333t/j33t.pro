@@ -1,198 +1,167 @@
-/* ---------- Theme tokens ---------- */
-:root{
+/* =========================================================
+   J33T · Docsify skin — clean, mobile-first, dark-mode ready
+   ========================================================= */
+
+/* ---------- Theme tokens (light) ---------- */
+:root {
+  color-scheme: light dark;
   --bg:#ffffff; --ink:#101213; --muted:#5a6066; --edge:#e9ecef;
-  --brand:#0BA66C; --brand-ink:#fff;
+  --brand:#0BA66C; --brand-ink:#ffffff;
   --card:#fafafa; --shadow:0 8px 28px rgba(16,18,19,.08);
   --w:1140px;
-  /* set these to your GIF URLs */
-  --rings-gif:url('RINGS.gif');         /* hero rings GIF */
-  --footer-gif:url('FOOTER.gif');       /* bottom dark GIF */
+  --rings-gif:none;   /* set to url('hero.gif') */
+  --footer-gif:none;  /* set to url('footer.gif') */
+}
+
+/* ---------- Dark mode tokens ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:#0e0f10; --ink:#e8eaec; --muted:#9aa1a8; --edge:#23262a;
+  --brand:#2BD394; --brand-ink:#0a0d0b;
+  --card:#141618; --shadow:0 8px 28px rgba(0,0,0,.35);
 }
 
 /* ---------- Base ---------- */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font:16px/1.6 "Source Sans 3", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+* { box-sizing: border-box }
+html, body { height: 100% }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--ink);
+  font: 16px/1.6 "Source Sans 3", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
-a{color:var(--brand); text-decoration:none}
-a:hover{opacity:.9}
+a { color: var(--brand); text-decoration: none }
+a:hover { opacity: .9 }
+
+/* Ensure comfy bottom space on all pages (incl. iOS safe area) */
+#app { padding-bottom: max(84px, calc(env(safe-area-inset-bottom, 0) + 64px)); }
 
 /* ---------- Layout helpers ---------- */
-.wrap{max-width:var(--w); margin:0 auto; padding:0 20px}
-.section{max-width:var(--w); margin:40px auto; padding:0 20px}
-.grid{display:grid; gap:18px}
-.cards{grid-template-columns:repeat(auto-fit, minmax(260px,1fr))}
-.card{background:var(--card); border:1px solid var(--edge); border-radius:16px; padding:16px; box-shadow:var(--shadow)}
-.btn{display:inline-block; padding:10px 16px; border-radius:12px; border:1px solid var(--edge); background:#fff; color:var(--ink); box-shadow:var(--shadow)}
-.btn.primary{background:var(--brand); color:var(--brand-ink); border-color:transparent}
+.wrap { max-width: var(--w); margin: 0 auto; padding: 0 20px }
+.section { max-width: var(--w); margin: 56px auto; padding: 0 20px }
+.grid { display: grid; gap: 18px }
+.cards { grid-template-columns: repeat(auto-fit, minmax(260px,1fr)) }
+.card {
+  background: var(--card); border: 1px solid var(--edge);
+  border-radius: 16px; padding: 16px; box-shadow: var(--shadow)
+}
+.btn {
+  display: inline-block; padding: 10px 16px; border-radius: 12px;
+  border: 1px solid var(--edge); background: #fff; color: #111;
+  box-shadow: var(--shadow);
+}
+:root[data-theme="dark"] .btn { background:#1b1e21; color: var(--ink); border-color:#2a2e33 }
+.btn.primary { background: var(--brand); color: var(--brand-ink); border-color: transparent }
 
 /* ---------- Typography ---------- */
-h1,h2,h3{margin:0 0 .4em}
-h1.display{
-  font-family:"Source Serif 4", serif; font-weight:900;
-  font-size: clamp(36px, 6vw, 56px); line-height:1.05; letter-spacing:.1px;
+h1, h2, h3 { margin: 0 0 .5em }
+h1.display {
+  font-family: "Source Serif 4", serif; font-weight: 900;
+  font-size: clamp(34px, 6vw, 56px); line-height: 1.05; letter-spacing: .1px;
 }
-h2.section-title{
-  font-family:"Source Serif 4", serif; font-weight:900; font-size:28px; line-height:1.2;
+h2.section-title {
+  font-family: "Source Serif 4", serif; font-weight: 900;
+  font-size: 28px; line-height: 1.2;
 }
-.eyebrow{font-weight:600; color:var(--muted); letter-spacing:.3px; text-transform:none; font-size:14px; margin-bottom:6px}
-.sub{color:var(--muted); margin:.2rem 0 1rem}
+.eyebrow { font-weight: 600; color: var(--muted); letter-spacing: .3px; font-size: 14px; margin-bottom: 6px }
+.sub { color: var(--muted); margin: .2rem 0 1rem }
 
-/* ---------- Blurred sticky nav ---------- */
-.site-nav{
-  position:sticky; top:0; z-index:50;
-  background:rgba(255,255,255,.72);
-  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(16,18,19,.06)
-}
-.site-nav .wrap{display:flex; align-items:center; justify-content:space-between; min-height:66px}
-.site-nav .links a{margin:0 10px; color:#2a2f34}
-.site-nav .links a:hover{color:var(--ink)}
+/* Scroll anchors don’t hide under sticky nav */
+:target { scroll-margin-top: 80px }
 
-/* ---------- Hero with rings GIF + overlay ---------- */
-.hero{position:relative; padding:84px 0 56px; overflow:hidden}
-.hero::before{
-  content:""; position:absolute; inset:-20% -10% auto -10%; height:580px;
-  background:var(--rings-gif) center/cover no-repeat;
-  filter:saturate(.9) contrast(1.02);
+/* ---------- Custom nav (blurred, sticky) ---------- */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: color-mix(in oklab, var(--bg) 86%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in oklab, var(--edge) 80%, transparent);
 }
-.hero::after{
-  content:""; position:absolute; inset:0 0 auto 0; height:580px;
-  background:linear-gradient(to bottom, rgba(255,255,255,.75), rgba(255,255,255,.95));
+.site-nav .wrap { display: flex; align-items: center; gap: 16px; min-height: 60px }
+.brand { font-weight: 800; letter-spacing: .2px; color: var(--ink) }
+.links { display: flex; gap: 14px; margin-left: auto }
+.links a { color: color-mix(in oklab, var(--ink) 80%, transparent); padding: 8px 6px; border-radius: 8px }
+.links a:hover { color: var(--ink) }
+.links a.active { font-weight: 700; color: var(--brand); background: color-mix(in oklab, var(--brand) 10%, transparent) }
+.nav-toggle, .theme-toggle {
+  margin-left: 0; font-size: 20px; line-height: 1; border: 0; background: transparent; padding: 8px; cursor: pointer;
+  color: var(--ink); border-radius: 8px;
 }
-.hero-in{position:relative; z-index:1; text-align:center}
-.cta .btn{margin-right:8px}
+.theme-toggle { margin-left: 6px }
+.nav-toggle:focus-visible, .theme-toggle:focus-visible, a:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--brand); outline-offset: 2px;
+}
+
+/* ---------- Hero (GIF + soft overlay) ---------- */
+.hero { position: relative; padding: 84px 0 56px; overflow: hidden }
+.hero::before {
+  content:""; position:absolute; inset:-20% -10% auto -10%; height: 580px;
+  background: var(--rings-gif) center/cover no-repeat;
+  filter: saturate(.9) contrast(1.02);
+}
+.hero::after {
+  content:""; position:absolute; inset:0 0 auto 0; height: 580px;
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--bg) 75%, transparent), color-mix(in oklab, var(--bg) 95%, transparent));
+}
+.hero-in { position: relative; z-index: 1; text-align: center }
+.cta .btn { margin-right: 8px }
 
 /* ---------- Docsify content area ---------- */
-.site-main{padding-bottom:60px}
-#app{max-width:var(--w); margin:16px auto 40px; padding:0 20px}
-.markdown-section{max-width:var(--w) !important; padding:0 !important}
-.markdown-section h2{font-family:"Source Serif 4", serif; font-weight:900; margin:28px 0 10px}
-.markdown-section p{margin:.6rem 0}
-details{border:1px solid var(--edge); border-radius:12px; padding:10px 12px; background:#fff}
-details+details{margin-top:10px}
+.markdown-section { max-width: var(--w) !important; margin: 16px auto 40px !important; padding: 0 20px !important }
+details { border: 1px solid var(--edge); border-radius: 12px; padding: 10px 12px; background: var(--bg) }
+details + details { margin-top: 10px }
 
-/* ---------- Embeds ---------- */
-.embed{position:relative; width:100%; max-width:var(--w); border:1px solid var(--edge); border-radius:14px; overflow:hidden; box-shadow:var(--shadow)}
-.embed iframe{display:block; width:100%; height:420px}
+/* ---------- Embeds (responsive) ---------- */
+.embed { position: relative; width: 100%; max-width: var(--w); border: 1px solid var(--edge); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow) }
+.embed iframe { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto }
 
-/* ---------- Footer with dark GIF + overlay ---------- */
-.site-foot{position:relative; color:#d6d9db; margin-top:80px; padding:60px 0}
-.site-foot::before{
-  content:""; position:absolute; inset:0;
-  background:var(--footer-gif) center/cover no-repeat fixed;
-  opacity:.9;
+/* ---------- Footer ---------- */
+.site-foot {
+  position: relative; color: #d6d9db; margin-top: 80px; padding: 64px 0;
+  background: #0f1011;
 }
-.site-foot::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(12,12,12,.92), rgba(12,12,12,.85));
+:root[data-theme="dark"] .site-foot { background:#0b0c0d }
+.site-foot::before {
+  content:""; position:absolute; inset:0; background: var(--footer-gif) center/cover no-repeat fixed; opacity:.88;
 }
-.site-foot > .wrap{position:relative; z-index:1}
-.site-foot a{color:#d7fbe7}
-
-/* ---------- Responsive tweaks ---------- */
-@media (max-width:760px){
-  .site-nav .links{display:none}
-  .hero{padding:64px 0 40px}
+.site-foot::after {
+  content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(12,12,12,.94), rgba(12,12,12,.86));
 }
-@media (prefers-reduced-motion:reduce){
-  .hero::before, .site-foot::before{animation:none}
-}
+.site-foot > .wrap { position: relative; z-index: 1 }
+.site-foot a { color: #d7fbe7 }
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 24px }
+.mini { font-weight: 700; margin-bottom: 8px }
+.legal { opacity: .75; margin-top: 10px }
 
+/* ---------- Remove Docsify chrome ---------- */
+.sidebar, .sidebar-toggle, .search, .app-name, .app-nav { display: none !important }
 
-/* remove docsify layout chrome */
-.sidebar, .sidebar-toggle, .search, .app-name, .app-nav { display:none !important; }
-
-/* full-width content with our rhythm */
-#app { max-width: var(--w); margin: 0 auto; padding: 0 20px; }
-.markdown-section { max-width: var(--w) !important; margin: 0 auto !important; padding: 0 !important; }
-
-/* nice spacing */
-.section { margin: 56px auto; }
-.card { border-radius: 16px; }
-.btn { border-radius: 12px; box-shadow: var(--shadow); }
-
-
-/* ——— NAV ——— */
-.site-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(16,18,19,.06)}
-.site-nav .wrap{display:flex;align-items:center;min-height:60px;gap:16px}
-.brand{font-weight:700;letter-spacing:.2px;color:var(--ink);text-decoration:none}
-.links a{margin:0 10px;color:#2a2f34;text-decoration:none}
-.links a:hover{color:var(--ink)}
-.nav-toggle{margin-left:auto;font-size:22px;line-height:1;border:0;background:transparent;padding:8px;display:none}
-
-/* ——— MOBILE LAYOUT ——— */
-@media (max-width: 760px){
-  /* nav */
-  .nav-toggle{display:block}
-  .links{position:fixed;inset:60px 0 auto 0;background:#fff;border-bottom:1px solid var(--edge);
-    display:none;flex-direction:column;gap:8px;padding:12px 16px}
-  body.nav-open .links{display:flex}
-  .links a{padding:10px 6px}
-
-  /* container + rhythm */
-  #app,.markdown-section{padding:0 16px !important}
-  .section{margin:40px auto}
-
-  /* hero */
-  h1.display{font-size:clamp(28px,8vw,40px)}
-  .cta .btn{display:block;margin:10px auto 0;max-width:360px;text-align:center}
-
-  /* grids/cards */
-  .grid{display:grid;gap:14px}
-  .cards{grid-template-columns:1fr}
-  .card{padding:14px;border-radius:14px}
-
-  /* embeds (16:9 responsive) */
-  .embed{border-radius:12px}
-  .embed iframe{height:min(56vw,420px)}
-}
-
-/* tap targets & focus */
-a,.btn,.nav-toggle{touch-action:manipulation}
-:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
-
-/* minor spacing polish */
-#app{max-width:var(--w);margin:0 auto}
-.section{max-width:var(--w)}
-.btn{border-radius:12px;box-shadow:var(--shadow)}
-
-
-/* Active nav link */
-.links a.active {
-  font-weight: 600;
-  color: var(--brand);
-}
-
-/* Search in nav */
-.nav-search {
-  margin-left: auto;
-  position: relative;
-}
-.nav-search input {
-  padding: 6px 8px;
-  border: 1px solid var(--edge);
-  border-radius: 8px;
-  font-size: 14px;
-}
-.nav-search input:focus {
-  outline: 2px solid var(--brand);
-  outline-offset: 1px;
-}
-
-/* On mobile, put search inside dropdown */
-@media (max-width: 760px){
-  .nav-search {
-    order: 99;
-    width: 100%;
-    margin: 8px 0 0;
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+  .nav-toggle { display: inline-block; margin-left: auto }
+  .links {
+    position: fixed; left: 0; right: 0; top: 60px; display: none;
+    background: var(--bg); border-bottom: 1px solid var(--edge);
+    flex-direction: column; gap: 6px; padding: 10px 16px;
   }
-  .nav-search input {
-    width: 100%;
-  }
+  body.nav-open .links { display: flex }
+  .links a { padding: 10px 6px }
+
+  #app, .markdown-section { padding: 0 16px !important }
+  .section { margin: 40px auto }
+
+  .hero { padding: 64px 0 40px }
+  h1.display { font-size: clamp(26px, 8vw, 40px) }
+  .cta .btn { display: block; margin: 10px auto 0; max-width: 360px; text-align: center }
+
+  .cards { grid-template-columns: 1fr }
+  .card { padding: 14px }
 }
+
+/* ---------- Minor polish ---------- */
+#app { max-width: var(--w); margin: 0 auto }
+.section { max-width: var(--w) }
+.btn { border-radius: 12px }
+
+/* Utility: hide hero media if no GIF set */
+.hero::before { display: var(--rings-gif, none) }
+.site-foot::before { display: var(--footer-gif, none) }
