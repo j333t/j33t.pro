@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Site</title>
+  <title>J33T · Crafty Crow</title>
 
-  <!-- Theme CSS (required for non-skeleton look) -->
-  <link rel="stylesheet" href="https://unpkg.com/docsify@4/themes/vue.css">
+  <!-- Fonts: Source Serif (Black), Source Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="custom.css"/>
 </head>
 <body>
   <div id="app"></div>
 
   <script>
     window.$docsify = {
-      name: 'Site',
+      name: 'J33T',
       loadSidebar: true,
       subMaxLevel: 2,
       routerMode: 'hash',
-      executeScript: true
+      executeScript: true,
+      alias: { '/.*/_sidebar.md': '/_sidebar.md' }
     };
   </script>
   <script src="https://unpkg.com/docsify@4/lib/docsify.min.js"></script>
