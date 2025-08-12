@@ -174,3 +174,19 @@ details + details { margin-top: 10px }
 /* Utility: hide hero media if no GIF set */
 .hero::before { display: var(--rings-gif, none) }
 .site-foot::before { display: var(--footer-gif, none) }
+
+
+/* === NAV OVERRIDES (force visibility) === */
+.links{display:flex !important; gap:14px; margin-left:auto}
+.nav-toggle{display:none !important}
+
+/* mobile */
+@media (max-width:760px){
+  .nav-toggle{display:inline-block !important}
+  .links{
+    position:fixed; left:0; right:0; top:60px;
+    background:var(--bg); border-bottom:1px solid var(--edge);
+    display:none !important; flex-direction:column; gap:8px; padding:12px 16px;
+  }
+  body.nav-open .links{display:flex !important}
+}
