@@ -114,3 +114,50 @@ details+details{margin-top:10px}
 .section { margin: 56px auto; }
 .card { border-radius: 16px; }
 .btn { border-radius: 12px; box-shadow: var(--shadow); }
+
+
+/* ——— NAV ——— */
+.site-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(16,18,19,.06)}
+.site-nav .wrap{display:flex;align-items:center;min-height:60px;gap:16px}
+.brand{font-weight:700;letter-spacing:.2px;color:var(--ink);text-decoration:none}
+.links a{margin:0 10px;color:#2a2f34;text-decoration:none}
+.links a:hover{color:var(--ink)}
+.nav-toggle{margin-left:auto;font-size:22px;line-height:1;border:0;background:transparent;padding:8px;display:none}
+
+/* ——— MOBILE LAYOUT ——— */
+@media (max-width: 760px){
+  /* nav */
+  .nav-toggle{display:block}
+  .links{position:fixed;inset:60px 0 auto 0;background:#fff;border-bottom:1px solid var(--edge);
+    display:none;flex-direction:column;gap:8px;padding:12px 16px}
+  body.nav-open .links{display:flex}
+  .links a{padding:10px 6px}
+
+  /* container + rhythm */
+  #app,.markdown-section{padding:0 16px !important}
+  .section{margin:40px auto}
+
+  /* hero */
+  h1.display{font-size:clamp(28px,8vw,40px)}
+  .cta .btn{display:block;margin:10px auto 0;max-width:360px;text-align:center}
+
+  /* grids/cards */
+  .grid{display:grid;gap:14px}
+  .cards{grid-template-columns:1fr}
+  .card{padding:14px;border-radius:14px}
+
+  /* embeds (16:9 responsive) */
+  .embed{border-radius:12px}
+  .embed iframe{height:min(56vw,420px)}
+}
+
+/* tap targets & focus */
+a,.btn,.nav-toggle{touch-action:manipulation}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* minor spacing polish */
+#app{max-width:var(--w);margin:0 auto}
+.section{max-width:var(--w)}
+.btn{border-radius:12px;box-shadow:var(--shadow)}
