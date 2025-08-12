@@ -1,9 +1,9 @@
 <section class="hero">
   <div class="hero-in">
     <p class="eyebrow">Fixing the gaps your ERP/CRM can’t.</p>
-    <h1 class="display">Your Spreadsheets Are Buckling</h1>
+    <h1 class="display">Simplifying the Complex</h1>
     <p class="sub">I build simple, custom systems so your team stops firefighting and starts scaling.<br/>
-      J33T.pro (Jeet Shah) · Owner, Crafty Crow
+      J33T.pro (aka Jeet Shah) · Owner, CraftyCrow
     </p>
     <p class="cta">
       <a class="btn primary" href="#/contact">Get a Free Systems Gap Review</a>
