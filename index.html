@@ -9,81 +9,82 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="custom.css"/>
 </head>
-  
-<header class="site-nav">
-  <div class="wrap">
-    <a class="brand" href="#/">J33T</a>
-    <button class="nav-toggle" aria-label="Menu">☰</button>
-    <nav class="links">
-      <a href="#/">Home</a>
-      <a href="#/work">Work</a>
-      <a href="#/systems">Systems</a>
-      <a href="#/training">Training</a>
-      <a href="#/contact">Contact</a>
-      <a href="https://buttondown.email/YOUR/archive" target="_blank" rel="noopener">Articles ↗</a>
-    </nav>
-    <div class="nav-search">
-      <input id="navSearch" placeholder="Search…" />
-    </div>
-  </div>
-</header>
-
-<script>
-  document.addEventListener('click', e => {
-    if (e.target.closest('.nav-toggle')) document.body.classList.toggle('nav-open');
-    if (e.target.matches('.links a')) document.body.classList.remove('nav-open');
-  });
-</script>
-
-  <script>
-  window.$docsify = {
-    name: 'J33T',
-    loadSidebar: false,
-    subMaxLevel: 2,
-    routerMode: 'hash',
-    executeScript: true,
-    search: {
-      paths: 'auto',
-      placeholder: 'Search…',
-      noData: 'No matches found.'
-    }
-  };
-</script>
-<script src="https://unpkg.com/docsify@4/lib/docsify.min.js"></script>
-<script src="https://unpkg.com/docsify/lib/plugins/search.min.js"></script>
-
-<script>
-  // Toggle mobile nav
-  document.addEventListener('click', e => {
-    if (e.target.closest('.nav-toggle')) document.body.classList.toggle('nav-open');
-    if (e.target.matches('.links a')) document.body.classList.remove('nav-open');
-  });
-
-  // Highlight active nav link
-  function setActiveNav() {
-    const current = location.hash.split('?')[0];
-    document.querySelectorAll('.links a').forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === current);
-    });
-  }
-  window.addEventListener('hashchange', setActiveNav);
-  window.addEventListener('load', setActiveNav);
-</script>
-
-  
 <body>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="brand" href="#/">J33T</a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <nav class="links">
+        <a href="#/">Home</a>
+        <a href="#/work">Work</a>
+        <a href="#/systems">Systems</a>
+        <a href="#/training">Training</a>
+        <a href="#/free-tools">Free Tools</a>
+        <a href="#/contact">Contact</a>
+        <a href="https://buttondown.com/j33t/archive" target="_blank" rel="noopener">Articles ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- DOCSIFY MOUNT -->
   <div id="app"></div>
 
+  <!-- FOOTER -->
+  <footer class="site-foot">
+    <div class="wrap foot-grid">
+      <div class="foot-col">
+        <div class="mini">Let’s build your tech backbone.</div>
+        <div class="legal">© 2025 · J33T · Crafty Crow</div>
+      </div>
+      <div class="foot-col">
+        <div class="mini">Contact</div>
+        <ul>
+          <li><a href="mailto:connect@j33t.pro">connect@j33t.pro</a></li>
+          <li><a href="tel:+918092021020">+91 80920 21020</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <div class="mini">Follow</div>
+        <ul>
+          <li><a href="https://twitter.com/">Twitter</a></li>
+          <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Docsify config + scripts -->
   <script>
     window.$docsify = {
       name: 'J33T',
       loadSidebar: false,
       subMaxLevel: 2,
       routerMode: 'hash',
-      executeScript: true,
-      alias: { '/.*/_sidebar.md': '/_sidebar.md' }
+      executeScript: true
     };
   </script>
   <script src="https://unpkg.com/docsify@4/lib/docsify.min.js"></script>
+
+  <!-- Minimal JS: mobile toggle + active link -->
+  <script>
+    // mobile menu toggle
+    document.addEventListener('click', e => {
+      if (e.target.closest('.nav-toggle')) document.body.classList.toggle('nav-open');
+      if (e.target.matches('.links a')) document.body.classList.remove('nav-open');
+    });
+
+    // highlight active nav link
+    function setActive() {
+      const cur = (location.hash.split('?')[0] || '#/').replace(/\/$/, '');
+      document.querySelectorAll('.links a').forEach(a => {
+        const href = a.getAttribute('href').replace(/\/$/, '');
+        a.classList.toggle('active', href === cur);
+      });
+    }
+    window.addEventListener('hashchange', setActive);
+    window.addEventListener('load', setActive);
+  </script>
 </body>
 </html>
