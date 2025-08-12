@@ -64,12 +64,3 @@
   </div>
   <p><a class="btn" href="#/training">See all courses →</a></p>
 </section>
-
-<section class="section">
-  <h2 class="section-title">Audiences</h2>
-  <div class="card">
-    <b>Owners / Leaders:</b> co-create systems to build the business as you want it.<br/>
-    <b>Managers / Executives:</b> automated MIS & reporting.<br/>
-    <b>Doers / ICs:</b> advanced Excel, data analysis, presentations.
-  </div>
-</section>
