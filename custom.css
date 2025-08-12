@@ -91,6 +91,15 @@ h2.section-title {
   outline: 2px solid var(--brand); outline-offset: 2px;
 }
 
+/* base (desktop) */
+.nav-toggle { display: none; }
+
+/* mobile only */
+@media (max-width: 760px){
+  .nav-toggle { display: inline-block; }
+}
+
+
 /* ---------- Hero (GIF + soft overlay) ---------- */
 .hero { position: relative; padding: 84px 0 56px; overflow: hidden }
 .hero::before {
