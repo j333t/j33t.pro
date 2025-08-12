@@ -101,3 +101,16 @@ details+details{margin-top:10px}
 @media (prefers-reduced-motion:reduce){
   .hero::before, .site-foot::before{animation:none}
 }
+
+
+/* remove docsify layout chrome */
+.sidebar, .sidebar-toggle, .search, .app-name, .app-nav { display:none !important; }
+
+/* full-width content with our rhythm */
+#app { max-width: var(--w); margin: 0 auto; padding: 0 20px; }
+.markdown-section { max-width: var(--w) !important; margin: 0 auto !important; padding: 0 !important; }
+
+/* nice spacing */
+.section { margin: 56px auto; }
+.card { border-radius: 16px; }
+.btn { border-radius: 12px; box-shadow: var(--shadow); }
