@@ -161,3 +161,38 @@ a,.btn,.nav-toggle{touch-action:manipulation}
 #app{max-width:var(--w);margin:0 auto}
 .section{max-width:var(--w)}
 .btn{border-radius:12px;box-shadow:var(--shadow)}
+
+
+/* Active nav link */
+.links a.active {
+  font-weight: 600;
+  color: var(--brand);
+}
+
+/* Search in nav */
+.nav-search {
+  margin-left: auto;
+  position: relative;
+}
+.nav-search input {
+  padding: 6px 8px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.nav-search input:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: 1px;
+}
+
+/* On mobile, put search inside dropdown */
+@media (max-width: 760px){
+  .nav-search {
+    order: 99;
+    width: 100%;
+    margin: 8px 0 0;
+  }
+  .nav-search input {
+    width: 100%;
+  }
+}
