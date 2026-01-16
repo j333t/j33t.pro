@@ -23,6 +23,5 @@ The workflow in `.github/workflows/pages.yml` publishes the repository contents 
 ## Structure
 
 - `content/` for Markdown pages
-- `index.html` and page folders (e.g. `work/`, `systems/`) for minimal HTML shells
-- `site.js` builds the shared layout and renders Markdown for every page
-- `custom.css` and image assets in the repo root
+- `index.html` and page folders (e.g. `work/`, `systems/`) for HTML shells
+- `custom.css`, `site.js`, and image assets in the repo root
