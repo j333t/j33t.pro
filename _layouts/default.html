@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{% if page.title %}{{ page.title }} · {% endif %}J33T · Crafty Crow</title>
 
   <!-- Fonts: Source Serif (Black), Source Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ "/custom.css" | relative_url }}"/>
-  <link rel="icon" type="image/png" href="{{ "/favicon.png" | relative_url }}" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,900&family=Noto+Color+Emoji&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ " /custom.css" | relative_url }}" />
+  <link rel="icon" type="image/png" href="{{ " /favicon.png" | relative_url }}" />
 </head>
+
 <body>
 
   <!-- NAV -->
   <header class="site-nav">
     <div class="wrap">
-      <a href="{{ "/" | relative_url }}" class="brand">
-        <img src="{{ "/logo.png" | relative_url }}" alt="CraftyCrow" />
+      <a href="{{ " /" | relative_url }}" class="brand">
+        <img src="{{ " /logo.png" | relative_url }}" alt="CraftyCrow" />
       </a>
       <button class="nav-toggle" aria-label="Menu">☰</button>
       <nav class="links">
-        <a href="{{ "/" | relative_url }}">Home</a>
-        <a href="{{ "/work/" | relative_url }}">Work</a>
-        <a href="{{ "/systems/" | relative_url }}">Systems</a>
-        <a href="{{ "/training/" | relative_url }}">Training</a>
-        <a href="{{ "/free-tools/" | relative_url }}">Free Tools</a>
-        <a href="{{ "/contact/" | relative_url }}">Contact</a>
+        <a href="{{ " /" | relative_url }}">Home</a>
+        <a href="{{ " /work/" | relative_url }}">Work</a>
+        <a href="{{ " /systems/" | relative_url }}">Systems</a>
+        <a href="{{ " /training/" | relative_url }}">Training</a>
+        <a href="{{ " /free-tools/" | relative_url }}">Free Tools</a>
+        <a href="{{ " /contact/" | relative_url }}">Contact</a>
         <a href="https://buttondown.com/j33t/archive" target="_blank" rel="noopener">Articles ↗</a>
       </nav>
       <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">🌓</button>
@@ -76,11 +80,11 @@
         const href = a.getAttribute('href').replace(/\/$/, '');
         // Simple check: exact match or home
         if (cur === '' && href.endsWith('/')) {
-             a.classList.add('active');
+          a.classList.add('active');
         } else if (cur !== '' && href.endsWith(cur)) {
-             a.classList.add('active');
+          a.classList.add('active');
         } else {
-             a.classList.remove('active');
+          a.classList.remove('active');
         }
       });
     }
@@ -104,4 +108,5 @@
   </script>
 
 </body>
+
 </html>
