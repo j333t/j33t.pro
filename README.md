@@ -35,14 +35,6 @@ Using the GitHub CLI:
 gh workflow run "Hugo build" --ref <branch-name>
 ```
 
-## Merge conflict helper
-
-If you hit merge conflicts on the Hugo content/layout files, run the helper script to merge a target branch and keep the restored Hugo content from this branch:
-
-```bash
-./scripts/resolve-hugo-conflicts.sh main
-```
-
 ## Structure
 
 - `content/` for pages

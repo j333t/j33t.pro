@@ -36,7 +36,7 @@ a { color: var(--brand); text-decoration: none }
 a:hover { opacity: .9 }
 
 /* Ensure comfy bottom space on all pages (incl. iOS safe area) */
-#app { padding-bottom: max(84px, calc(env(safe-area-inset-bottom, 0) + 64px)); }
+.content { padding-bottom: max(84px, calc(env(safe-area-inset-bottom, 0) + 64px)); }
 
 /* ---------- Layout helpers ---------- */
 .wrap { max-width: var(--w); margin: 0 auto; padding: 0 20px }
@@ -145,8 +145,9 @@ h2.section-title {
 .hero-in { position: relative; z-index: 1; text-align: center }
 .cta .btn { margin-right: 8px }
 
-/* ---------- Docsify content area ---------- */
-.markdown-section { max-width: var(--w) !important; margin: 16px auto 40px !important; padding: 0 20px !important }
+/* ---------- Content area ---------- */
+.content-body { margin-top: 16px }
+.content .section { margin-top: 24px }
 details { border: 1px solid var(--edge); border-radius: 12px; padding: 10px 12px; background: var(--bg) }
 details + details { margin-top: 10px }
 
@@ -172,9 +173,6 @@ details + details { margin-top: 10px }
 .mini { font-weight: 700; margin-bottom: 8px }
 .legal { opacity: .75; margin-top: 10px }
 
-/* ---------- Remove Docsify chrome ---------- */
-.sidebar, .sidebar-toggle, .search, .app-name, .app-nav { display: none !important }
-
 /* ---------- Mobile ---------- */
 @media (max-width: 760px) {
   .nav-toggle { display: inline-block; margin-left: auto }
@@ -186,7 +184,7 @@ details + details { margin-top: 10px }
   body.nav-open .links { display: flex }
   .links a { padding: 10px 6px }
 
-  #app, .markdown-section { padding: 0 16px !important }
+  .content { padding: 0 16px }
   .section { margin: 40px auto }
 
   .hero { padding: 64px 0 40px }
@@ -198,8 +196,7 @@ details + details { margin-top: 10px }
 }
 
 /* ---------- Minor polish ---------- */
-#app { max-width: var(--w); margin: 0 auto }
-.section { max-width: var(--w) }
+.content { margin: 0 auto }
 .btn { border-radius: 12px }
 
 /* === NAV OVERRIDES (force visibility) === */
