@@ -264,31 +264,6 @@ a:focus-visible,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 84px 0 56px;
-  overflow: hidden;
-}
-
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  background: var(--rings-gif) center/cover no-repeat;
-  filter: saturate(.9) contrast(1.02);
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 580px;
-  background: linear-gradient(to bottom, color-mix(in oklab, var(--bg) 75%, transparent), color-mix(in oklab, var(--bg) 95%, transparent));
-}
-
-/* Dark mode: invert hero GIF for better blend */
-:root[data-theme="dark"] .hero::before {
-  filter: invert(1) hue-rotate(180deg) saturate(.9) contrast(1.02);
 }
 
 :root[data-theme="dark"] .hero::after {

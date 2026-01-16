@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{% if page.title %}{{ page.title }} · {% endif %}J33T · Crafty Crow</title>
+
+  <!-- Fonts: Source Serif (Black), Source Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "/custom.css" | relative_url }}"/>
+  <link rel="icon" type="image/png" href="{{ "/favicon.png" | relative_url }}" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="wrap">
+      <a href="{{ "/" | relative_url }}" class="brand">
+        <img src="{{ "/logo.png" | relative_url }}" alt="CraftyCrow" />
+      </a>
+      <button class="nav-toggle" aria-label="Menu">☰</button>
+      <nav class="links">
+        <a href="{{ "/" | relative_url }}">Home</a>
+        <a href="{{ "/work/" | relative_url }}">Work</a>
+        <a href="{{ "/systems/" | relative_url }}">Systems</a>
+        <a href="{{ "/training/" | relative_url }}">Training</a>
+        <a href="{{ "/free-tools/" | relative_url }}">Free Tools</a>
+        <a href="{{ "/contact/" | relative_url }}">Contact</a>
+        <a href="https://buttondown.com/j33t/archive" target="_blank" rel="noopener">Articles ↗</a>
+      </nav>
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">🌓</button>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <div id="main-content">
+    {{ content }}
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-foot">
+    <div class="wrap foot-grid">
+      <div class="foot-col">
+        <div class="mini">Let’s build your tech backbone.</div>
+        <div class="legal">© 2025 · J33T · Crafty Crow</div>
+      </div>
+      <div class="foot-col">
+        <div class="mini">Contact</div>
+        <ul>
+          <li><a href="mailto:connect@j33t.pro">connect@j33t.pro</a></li>
+          <li><a href="tel:+918092021020">+91 80920 21020</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <div class="mini">Follow</div>
+        <ul>
+          <li><a href="https://twitter.com/">Twitter</a></li>
+          <li><a href="https://www.linkedin.com/">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Minimal JS: mobile toggle + active link -->
+  <script>
+    // mobile menu toggle
+    document.addEventListener('click', e => {
+      if (e.target.closest('.nav-toggle')) document.body.classList.toggle('nav-open');
+      if (e.target.matches('.links a')) document.body.classList.remove('nav-open');
+    });
+
+    // highlight active nav link
+    function setActive() {
+      const cur = location.pathname.replace(/\/$/, '');
+      document.querySelectorAll('.links a').forEach(a => {
+        const href = a.getAttribute('href').replace(/\/$/, '');
+        // Simple check: exact match or home
+        if (cur === '' && href.endsWith('/')) {
+             a.classList.add('active');
+        } else if (cur !== '' && href.endsWith(cur)) {
+             a.classList.add('active');
+        } else {
+             a.classList.remove('active');
+        }
+      });
+    }
+    // Run on load
+    setActive();
+
+    // theme toggle (persists)
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? '' : 'dark';
+      if (next) {
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      } else {
+        root.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      }
+    });
+  </script>
+
+</body>
+</html>
