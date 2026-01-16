@@ -1,0 +1,38 @@
+baseURL = "https://j333t.github.io/j33t.pro/"
+languageCode = "en-us"
+title = "J33T · Crafty Crow"
+
+enableRobotsTXT = true
+
+[params]
+  description = "Simplifying the complex with custom systems."
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Work"
+    url = "/work/"
+    weight = 2
+  [[menu.main]]
+    name = "Systems"
+    url = "/systems/"
+    weight = 3
+  [[menu.main]]
+    name = "Training"
+    url = "/training/"
+    weight = 4
+  [[menu.main]]
+    name = "Free Tools"
+    url = "/free-tools/"
+    weight = 5
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 6
+  [[menu.main]]
+    name = "Articles ↗"
+    url = "https://buttondown.com/j33t/archive"
+    weight = 7
