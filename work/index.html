@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
-  {{ with .Site.Params.description }}<meta name="description" content="{{ . }}" />{{ end }}
+  <title>Work · J33T</title>
+  <meta name="description" content="Simplifying the complex with custom systems." />
 
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/custom.css" />
@@ -18,18 +18,23 @@
       </a>
       <button class="nav-toggle" aria-label="Menu">☰</button>
       <nav class="links">
-        {{ range .Site.Menus.main }}
-          {{ $isActive := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (and $.IsHome (eq .URL "/")) }}
-          {{ $isExternal := hasPrefix .URL "http" }}
-          <a href="{{ .URL }}" class="{{ if $isActive }}active{{ end }}" {{ if $isExternal }}target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
-        {{ end }}
+        <a href="/">Home</a>
+        <a href="/work/">Work</a>
+        <a href="/systems/">Systems</a>
+        <a href="/training/">Training</a>
+        <a href="/free-tools/">Free Tools</a>
+        <a href="/contact/">Contact</a>
+        <a href="https://buttondown.com/j33t/archive" target="_blank" rel="noopener">Articles ↗</a>
       </nav>
       <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">🌓</button>
     </div>
   </header>
 
-  <main class="content">
-    {{ block "main" . }}{{ end }}
+  <main class="content" data-md="/content/work.md" data-page="default">
+    <section class="section">
+      <h1 class="section-title" id="page-title"></h1>
+      <div class="content-body" id="page-content"></div>
+    </section>
   </main>
 
   <footer class="site-foot">
@@ -55,25 +60,7 @@
     </div>
   </footer>
 
-  <script>
-    document.addEventListener('click', event => {
-      if (event.target.closest('.nav-toggle')) document.body.classList.toggle('nav-open');
-      if (event.target.matches('.links a')) document.body.classList.remove('nav-open');
-    });
-
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved) root.setAttribute('data-theme', saved);
-    document.querySelector('.theme-toggle')?.addEventListener('click', () => {
-      const next = root.getAttribute('data-theme') === 'dark' ? '' : 'dark';
-      if (next) {
-        root.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-      } else {
-        root.removeAttribute('data-theme');
-        localStorage.removeItem('theme');
-      }
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="/site.js" defer></script>
 </body>
 </html>
