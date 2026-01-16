@@ -1,42 +1,27 @@
 # J33T.pro
 
-This site is now powered by Hugo.
+This site is plain HTML, CSS, and JavaScript. Content lives in Markdown files and is rendered in the browser.
 
 ## Local development
 
-1. Install Hugo (extended recommended).
-2. Run the dev server:
+Use any static file server, for example:
 
 ```bash
-hugo server
+python3 -m http.server 8000
 ```
 
-## GitHub Actions (Hugo build)
+Then open <http://localhost:8000>.
 
-The workflow is defined in `.github/workflows/hugo.yml` and runs on push, pull request, or manual dispatch.
+## Editing content
 
-### Commit changes
+Update the Markdown files in `content/` and refresh the browser to see changes.
 
-```bash
-git add -A
-git commit -m "Describe your change"
-git push
-```
+## GitHub Pages deploy
 
-### Run the workflow manually
-
-Using the GitHub UI:
-1. Go to **Actions** → **Hugo build**.
-2. Click **Run workflow** and select the branch.
-
-Using the GitHub CLI:
-
-```bash
-gh workflow run "Hugo build" --ref <branch-name>
-```
+The workflow in `.github/workflows/pages.yml` publishes the repository contents directly to GitHub Pages on every push to `main`.
 
 ## Structure
 
-- `content/` for pages
-- `layouts/` for templates
-- `static/` for assets
+- `content/` for Markdown pages
+- `index.html` and page folders (e.g. `work/`, `systems/`) for HTML shells
+- `custom.css`, `site.js`, and image assets in the repo root
