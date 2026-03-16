@@ -1,0 +1,13 @@
+OG IMAGE SPEC — create this as og-image.png (1200x630px)
+Place in root of your GitHub Pages repo.
+
+Background: #F7F4F3 (white smoke)
+Left ~60% of canvas:
+  - Top: "J33T" in DM Mono, 72px, #000100
+  - Below: "Systems Architect" in DM Mono, 24px, #999993, letter-spacing wide
+  - Below: "I'd rather help you avoid the expensive" in DM Serif Display italic, 32px, #000100
+          "problem than solve it." same style
+Right ~40%: leave empty or add a subtle geometric / grid element in #edeae8
+
+Keep it minimal. No gradients. No stock photos.
+Easiest to make in Figma or Canva with these exact specs.

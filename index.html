@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>J33T — Systems Architect</title>
+<meta name="description" content="I'd rather help you avoid the expensive problem than solve it. Systems architect based in Mumbai, designing systems that take businesses places." />
+<meta name="author" content="Jeet Shah" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://j33t.pro/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://j33t.pro/" />
+<meta property="og:title" content="J33T — Systems Architect" />
+<meta property="og:description" content="I'd rather help you avoid the expensive problem than solve it." />
+<meta property="og:image" content="https://j33t.pro/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_IN" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="J33T — Systems Architect" />
+<meta name="twitter:description" content="I'd rather help you avoid the expensive problem than solve it." />
+<meta name="twitter:image" content="https://j33t.pro/og-image.png" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23F7F4F3'/><text y='.85em' font-size='80' x='10'>🔥</text></svg>" />
+<meta name="theme-color" content="#F7F4F3" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jeet Shah",
+  "alternateName": "J33T",
+  "url": "https://j33t.pro",
+  "jobTitle": "Systems Architect",
+  "description": "Systems architect who designs systems that take businesses places. Specialises in simplifying the complex.",
+  "knowsAbout": ["Systems Architecture","Business Systems Design","Google Sheets Automation","Excel Systems","ERP and CRM Design","Workflow Automation","Data Modelling"],
+  "sameAs": ["https://craftycrow.co","https://buttondown.com/j33t","https://github.com/j333t"],
+  "address": {"@type":"PostalAddress","addressLocality":"Bandra","addressRegion":"Mumbai","addressCountry":"IN"}
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500&family=Noto+Emoji:wght@400&display=swap" rel="stylesheet" />
+
+<style>
+:root{--green:#00b050;--red-live:#e53e3e;--ease:cubic-bezier(0.16,1,0.3,1);}
+*{box-sizing:border-box;margin:0;padding:0;}
+
+/* custom cursor — desktop only */
+#cur{display:none;}
+@media(pointer:fine){
+  *{cursor:none!important;}
+  #cur{
+    display:block;
+    position:fixed;top:0;left:0;width:14px;height:14px;
+    pointer-events:none;z-index:9999;
+    transform:translate(-50%,-50%);
+    opacity:0;
+    transition:opacity 0.15s;
+  }
+  #cur svg{display:block;width:14px;height:14px;overflow:visible;}
+}
+
+/* scroll progress */
+#prog{
+  position:fixed;top:0;left:0;height:1px;width:100%;
+  background:var(--green);transform-origin:left;transform:scaleX(0);
+  z-index:1000;transition:transform 0.05s linear;
+}
+
+#outer{
+  --bg:#F7F4F3;--text:#000100;--text-muted:#4a4a48;--text-hint:#999993;
+  --border:rgba(0,1,0,0.1);--border-med:rgba(0,1,0,0.2);--surface:#edeae8;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;width:100%;
+  transition:background 0.3s,color 0.3s;
+}
+#outer[data-dark="1"]{
+  --bg:#0e0e0c;--text:#F0EDE8;--text-muted:#a8a49e;--text-hint:#5a5a55;
+  --border:rgba(240,237,232,0.1);--border-med:rgba(240,237,232,0.2);--surface:#1a1a16;
+}
+
+.site{font-family:'Instrument Sans',sans-serif;max-width:680px;margin:0 auto;padding:0 1.5rem 4rem;}
+
+/* NAV — fixed, shrinks on scroll */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.5rem 0;
+  background:transparent;
+  transition:padding 0.3s var(--ease),background 0.3s,border-color 0.3s;
+  border-bottom:0.5px solid transparent;
+}
+nav.scrolled{
+  padding:0.9rem 0;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  border-bottom-color:var(--border);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.nav-inner{
+  max-width:680px;margin:0 auto;padding:0 1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.nav-logo{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;letter-spacing:-0.02em;color:var(--text);}
+.nav-cursor{color:var(--green);animation:blink 1s step-end infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-aka{font-size:11px;color:var(--text-hint);letter-spacing:0.02em;margin-top:2px;}
+.nav-right{display:flex;align-items:center;gap:1.25rem;}
+.theme-btn{background:none;border:0.5px solid var(--border-med);border-radius:4px;width:26px;height:26px;cursor:pointer;font-size:12px;color:var(--text-hint);display:flex;align-items:center;justify-content:center;transition:border-color 0.2s,color 0.2s;}
+.theme-btn:hover{color:var(--text-muted);}
+.nav-cta a{font-size:13px;color:var(--text-muted);text-decoration:none;border-bottom:0.5px solid var(--border-med);padding-bottom:1px;transition:color 0.2s;}
+.nav-cta a:hover{color:var(--text);}
+
+/* push content below fixed nav */
+.site{padding-top:10rem;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.65s var(--ease),transform 0.65s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* HERO */
+.hero{margin-bottom:6rem;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--text-hint);text-transform:uppercase;margin-bottom:1.5rem;height:16px;position:relative;}
+.eyebrow-text{position:absolute;transition:opacity 0.5s ease,transform 0.5s ease;white-space:nowrap;}
+.eyebrow-text.hidden{opacity:0;transform:translateY(-4px);pointer-events:none;}
+.eyebrow-text.visible{opacity:1;transform:translateY(0);}
+.hero-headline{font-family:'DM Serif Display',serif;font-size:clamp(30px,5vw,44px);line-height:1.15;font-weight:400;margin-bottom:2rem;max-width:540px;color:var(--text);}
+.hero-headline em{font-style:italic;color:var(--text-muted);}
+.hero-sub{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:460px;}
+
+.divider{height:0.5px;background:var(--border);margin:3rem 0;}
+
+/* SECTION LABEL */
+.section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--text-hint);text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:0.75rem;}
+.section-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-hint);text-decoration:none;letter-spacing:0.06em;margin-left:auto;transition:color 0.2s;}
+.section-link:hover{color:var(--text-muted);}
+
+/* LIVE DOT */
+.work-label-wrap{position:relative;display:inline-flex;align-items:center;gap:0.5rem;cursor:default;}
+.work-tooltip{position:absolute;bottom:calc(100% + 6px);left:0;background:var(--surface);border:0.5px solid var(--border-med);border-radius:4px;padding:4px 8px;font-size:10px;white-space:nowrap;color:var(--text-muted);opacity:0;transform:translateY(4px);transition:opacity 0.2s,transform 0.2s;pointer-events:none;letter-spacing:0.02em;text-transform:none;z-index:10;}
+.work-label-wrap:hover .work-tooltip{opacity:1;transform:translateY(0);}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--red-live);animation:livepulse 1.8s ease-in-out infinite;display:inline-block;flex-shrink:0;}
+@keyframes livepulse{0%,100%{opacity:1}50%{opacity:0.25}}
+
+/* PROJECTS */
+.projects{margin-bottom:5rem;}
+.project-item{border-top:0.5px solid var(--border);cursor:pointer;}
+.project-item:hover .project-what{color:var(--text);}
+.project-item:hover .project-why{color:var(--text-muted);}
+.project-item:hover .project-date{color:var(--text-muted);}
+.project-header{padding:1.25rem 0;display:grid;grid-template-columns:1fr auto;gap:0.35rem 2rem;align-items:start;}
+.project-what{font-size:15px;font-weight:500;color:var(--text);grid-column:1;transition:color 0.18s;}
+.project-why{font-size:13px;color:var(--text-muted);line-height:1.6;grid-column:1;transition:color 0.18s;}
+.project-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);grid-column:2;grid-row:1;white-space:nowrap;transition:color 0.18s;}
+.project-toggle{font-family:'DM Mono',monospace;font-size:10px;color:var(--green);float:right;opacity:0;transition:opacity 0.2s;user-select:none;margin-left:8px;}
+.project-item:hover .project-toggle,.project-item.open .project-toggle{opacity:1;}
+.project-expand{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.project-item.open .project-expand{max-height:140px;}
+.project-detail-grid{padding:0 0 1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.project-detail-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-hint);margin-bottom:4px;}
+.project-detail-val{font-size:12px;color:var(--text-muted);line-height:1.5;}
+
+.project-separator{
+  padding:0.6rem 0;
+  border-top:0.5px solid var(--border);
+  font-family:'DM Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-hint);
+  opacity:0.6;
+}
+.craftycrow-note{padding:1.25rem 0;border-top:0.5px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);letter-spacing:0.04em;}
+.craftycrow-note a{color:var(--green);text-decoration:none;opacity:0.85;transition:opacity 0.2s;}
+.craftycrow-note a:hover{opacity:1;}
+
+/* PUBLICATIONS */
+.publications{margin-bottom:5rem;}
+.pub-item{padding:1rem 0;border-top:0.5px solid var(--border);display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;gap:0.3rem 1rem;text-decoration:none;transition:color 0.18s;align-items:start;}
+.pub-item:hover .pub-title{color:var(--text);}
+.pub-item:hover .pub-desc{color:var(--text-muted);}
+.pub-item:hover .pub-date{color:var(--text-muted);}
+.pub-item:hover .pub-type{color:var(--text-muted);border-color:var(--border-med);}
+.pub-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-hint);border:0.5px solid var(--border);border-radius:3px;padding:2px 5px;white-space:nowrap;grid-row:1;margin-top:2px;transition:color 0.18s,border-color 0.18s;}
+.pub-title{font-size:13px;color:var(--text-muted);line-height:1.5;grid-column:2;grid-row:1;transition:color 0.18s;}
+.pub-desc{font-size:12px;color:var(--text-hint);line-height:1.55;grid-column:2;grid-row:2;transition:color 0.18s;}
+.pub-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-hint);white-space:nowrap;grid-column:3;grid-row:1;transition:color 0.18s;}
+.pub-loading{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);padding:1rem 0;border-top:0.5px solid var(--border);}
+
+/* TESTIMONIALS */
+.testimonials{margin-bottom:5rem;}
+.testimonial{padding:1.25rem 0 1.25rem 1rem;border-top:0.5px solid var(--border);box-shadow:inset 0 0 0 0 transparent;transition:box-shadow 0.25s ease;}
+.testimonial:hover{box-shadow:inset 2px 0 0 0 var(--green);}
+.testimonial-quote{font-family:'DM Serif Display',serif;font-size:15px;line-height:1.65;font-style:italic;color:var(--text);margin-bottom:0.6rem;}
+.testimonial-source{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-hint);letter-spacing:0.05em;}
+
+/* CONTACT */
+.contact{margin-bottom:5rem;}
+.contact-line{font-family:'DM Serif Display',serif;font-size:28px;line-height:1.3;margin-bottom:0.75rem;color:var(--text);}
+.contact-prompt{font-size:13px;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6;}
+.contact-links{display:flex;gap:1.5rem;}
+.contact-links a{font-family:'DM Mono',monospace;font-size:12px;color:var(--text-muted);text-decoration:none;position:relative;padding-bottom:2px;transition:color 0.2s;}
+.contact-links a::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:0.5px;background:currentColor;transform:scaleX(0.4);transform-origin:left;transition:transform 0.25s ease;opacity:0.5;}
+.contact-links a:hover{color:var(--text);}
+.contact-links a:hover::after{transform:scaleX(1);opacity:1;}
+
+/* FOOTER */
+.footer{border-top:0.5px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-left{display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text-hint);letter-spacing:0.06em;}
+.fire{font-family:'Noto Emoji',sans-serif;font-size:14px;cursor:default;opacity:0;transition:opacity 0.8s ease;}
+.fire.lit{opacity:0.45;}
+.fire.blazing{opacity:1;}
+.footer-links{display:flex;gap:1rem;flex-wrap:wrap;}
+.footer-links a{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-hint);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+.footer-links a:hover{color:var(--text-muted);}
+</style>
+</head>
+
+<body>
+<noscript>
+<div style="max-width:680px;margin:0 auto;padding:2rem;font-family:sans-serif;line-height:1.7;color:#000100;">
+  <h1>J33T — Systems Architect</h1>
+  <p>I'd rather help you avoid the expensive problem than solve it.</p>
+  <p>I design systems that take businesses places.</p>
+  <h2>Work</h2>
+  <ul>
+    <li><strong>Invoice &amp; estimates system (2023)</strong> — Replaced a 10-year-old legacy software. Single Google Sheet, zero training required.</li>
+    <li><strong>Resource planning with live calendar sync (2022)</strong> — Google Sheets + Calendar API. Gantt-style, always current.</li>
+    <li><strong>Shipping ops modernisation (2021)</strong> — Replaced a 15-year-old Windows XP system. Multi-user, automated reports.</li>
+    <li><strong>Nexus checker for US state tax filings (2022)</strong> — Logic-driven Excel. Instant answers on state filing obligations.</li>
+    <li><strong>Daily sales reporting pipeline (2023)</strong> — Form to Looker Studio to scheduled PDF.</li>
+  </ul>
+  <h2>What people say</h2>
+  <blockquote>"Discussing with Jeet was a huge bonus — I probably wouldn't have been able to afford him otherwise."</blockquote>
+  <blockquote>"Deep interest in problem solving in general. Not just Excel — the way he thinks about problems is the thing."</blockquote>
+  <blockquote>"Well structured, customised as per needs. Time and effort savings: 50%." — DGM Finance</blockquote>
+  <h2>Contact</h2>
+  <p>Tell me what you're building, or what's breaking in your business.</p>
+  <p>Also building <a href="https://craftycrow.co">craftycrow.co</a></p>
+</div>
+</noscript>
+
+<!-- scroll progress -->
+<div id="prog" aria-hidden="true"></div>
+
+<div id="outer">
+
+<!-- custom cursor — inside #outer so var(--text) resolves -->
+<div id="cur" aria-hidden="true">
+  <svg viewBox="-8 -8 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="-6" y1="0" x2="6" y2="0" stroke="var(--text)" stroke-width="1.8" stroke-linecap="square"/>
+    <line x1="0" y1="-6" x2="0" y2="6" stroke="var(--text)" stroke-width="1.8" stroke-linecap="square"/>
+  </svg>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div>
+      <div class="nav-logo">J33T<span class="nav-cursor">_</span></div>
+      <div class="nav-aka">aka Jeet Shah</div>
+    </div>
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" title="toggle dark mode">◐</button>
+      <div class="nav-cta"><a href="mailto:jeet@j33t.pro">let's talk</a></div>
+    </div>
+  </div>
+</nav>
+
+<div class="site">
+
+  <section class="hero reveal">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-text visible" id="ey1">Systems Architect</span>
+      <span class="eyebrow-text hidden" id="ey2">simplifying the complex</span>
+    </div>
+    <h1 class="hero-headline">I'd rather help you avoid the expensive problem <em>than solve it.</em></h1>
+    <p class="hero-sub">I design systems that take businesses places.</p>
+  </section>
+
+  <section class="projects reveal">
+    <div class="section-label">
+      <span class="work-label-wrap">
+        Work
+        <span class="live-dot"></span>
+        <span class="work-tooltip">streamed live from a Google Sheet</span>
+      </span>
+    </div>
+
+    <div id="project-list">
+      <div class="project-item" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-what">Invoice &amp; estimates system <span class="project-toggle">+ more</span></div>
+          <div class="project-date">2023</div>
+          <div class="project-why">Replaced a 10-year-old legacy software. Built for a 70-year-old to operate daily without support.</div>
+        </div>
+        <div class="project-expand"><div class="project-detail-grid">
+          <div><div class="project-detail-label">Outcome</div><div class="project-detail-val">Single Google Sheet. Zero training required after handoff.</div></div>
+          <div><div class="project-detail-label">What it replaced</div><div class="project-detail-val">Decade-old paid software with vendor lock-in.</div></div>
+        </div></div>
+      </div>
+
+      <div class="project-item" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-what">Resource planning with live calendar sync <span class="project-toggle">+ more</span></div>
+          <div class="project-date">2022</div>
+          <div class="project-why">SaaS tools were expensive and didn't fit. Needed team availability at a glance.</div>
+        </div>
+        <div class="project-expand"><div class="project-detail-grid">
+          <div><div class="project-detail-label">Outcome</div><div class="project-detail-val">Gantt-style view, always current. No manual updates.</div></div>
+          <div><div class="project-detail-label">Stack</div><div class="project-detail-val">Google Sheets + Calendar API</div></div>
+        </div></div>
+      </div>
+
+      <div class="project-item" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-what">Shipping ops modernisation <span class="project-toggle">+ more</span></div>
+          <div class="project-date">2021</div>
+          <div class="project-why">15-year-old system. Windows XP. One person who knew how to use it.</div>
+        </div>
+        <div class="project-expand"><div class="project-detail-grid">
+          <div><div class="project-detail-label">Outcome</div><div class="project-detail-val">Multi-user access. Automated reports. No single point of failure.</div></div>
+          <div><div class="project-detail-label">What changed</div><div class="project-detail-val">From one person with institutional knowledge to a shared system.</div></div>
+        </div></div>
+      </div>
+
+      <div class="project-item" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-what">Nexus checker for US state tax filings <span class="project-toggle">+ more</span></div>
+          <div class="project-date">2022</div>
+          <div class="project-why">Which states does each client have filing obligations in — and how much?</div>
+        </div>
+        <div class="project-expand"><div class="project-detail-grid">
+          <div><div class="project-detail-label">Outcome</div><div class="project-detail-val">Instant answers. No manual lookup.</div></div>
+          <div><div class="project-detail-label">Client</div><div class="project-detail-val">US accounting firm, multi-state portfolios</div></div>
+        </div></div>
+      </div>
+
+      <div class="project-item" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-what">Daily sales reporting pipeline <span class="project-toggle">+ more</span></div>
+          <div class="project-date">2023</div>
+          <div class="project-why">Reps logging inconsistently. No single source of truth. Management flying blind.</div>
+        </div>
+        <div class="project-expand"><div class="project-detail-grid">
+          <div><div class="project-detail-label">Outcome</div><div class="project-detail-val">Form → Looker Studio → scheduled PDF. Fully automated.</div></div>
+          <div><div class="project-detail-label">Stack</div><div class="project-detail-val">Google Forms + Looker Studio + scheduled delivery</div></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="craftycrow-note">
+      also building <a href="https://craftycrow.co" target="_blank">craftycrow.co</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="publications reveal">
+    <div class="section-label">
+      Published
+      <a href="https://buttondown.com/j33t/archive/" target="_blank" class="section-link">archive ↗</a>
+    </div>
+    <div id="pub-list">
+      <div class="pub-loading">fetching feeds<span id="dots">.</span></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="testimonials reveal">
+    <div class="section-label">What people say</div>
+    <div class="testimonial">
+      <div class="testimonial-quote">"Discussing with Jeet was a huge bonus — I probably wouldn't have been able to afford him otherwise."</div>
+      <div class="testimonial-source">Client — systems engagement</div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-quote">"Deep interest in problem solving in general. Not just Excel — the way he thinks about problems is the thing."</div>
+      <div class="testimonial-source">Training participant — McKinsey BA prep, Aug 2024</div>
+    </div>
+    <div class="testimonial">
+      <div class="testimonial-quote">"Well structured, customised as per needs. Time &amp; effort savings: 50%."</div>
+      <div class="testimonial-source">DGM Finance, Dec 2022</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="contact reveal">
+    <div class="contact-line">Let's talk.</div>
+    <div class="contact-prompt">Tell me what you're building, or what's breaking in your business.</div>
+    <div class="contact-links">
+      <a href="mailto:jeet@j33t.pro">email</a>
+      <a href="https://wa.me/91XXXXXXXXXX" target="_blank">whatsapp</a>
+    </div>
+  </section>
+
+  <footer class="footer reveal">
+    <div class="footer-left">
+      <span class="fire" id="fire">🔥</span>
+      <span>j33t.pro</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://craftycrow.co" target="_blank">craftycrow.co ↗</a>
+      <a href="#">photography</a>
+      <a href="#">experiments</a>
+      <a href="https://buttondown.com/j33t/archive/" target="_blank">writing</a>
+    </div>
+  </footer>
+
+</div>
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────
+const SHEET_URL  = '';        // Google Sheet CSV publish URL
+const BUTTONDOWN = 'j33t';    // Buttondown username
+const YT_CHANNEL = '';        // YouTube channel ID
+// ─────────────────────────────────────────────────────────
+
+// Custom cursor (desktop only)
+const cur = document.getElementById('cur');
+if (cur && window.matchMedia('(pointer:fine)').matches) {
+  let mx = window.innerWidth/2, my = window.innerHeight/2;
+  let cx = mx, cy = my;
+  let visible = false;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    if (!visible) { cur.style.opacity = '1'; visible = true; }
+  });
+  document.addEventListener('mouseleave', () => { cur.style.opacity = '0'; visible = false; });
+  document.addEventListener('mouseenter', () => { if (visible) cur.style.opacity = '1'; });
+  (function tick() {
+    cx += (mx - cx) * 0.45;
+    cy += (my - cy) * 0.45;
+    cur.style.left = cx + 'px';
+    cur.style.top  = cy + 'px';
+    requestAnimationFrame(tick);
+  })();
+}
+
+// Scroll progress
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  if (h > 0) prog.style.transform = `scaleX(${Math.min(window.scrollY / h, 1)})`;
+}, { passive: true });
+
+// Fixed nav shrink
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// Dark mode
+const outer = document.getElementById('outer');
+document.getElementById('themeBtn').onclick = () => {
+  const dark = outer.getAttribute('data-dark') === '1';
+  outer.setAttribute('data-dark', dark ? '0' : '1');
+  localStorage.setItem('j33t-dark', dark ? '0' : '1');
+};
+if (localStorage.getItem('j33t-dark') === '1') outer.setAttribute('data-dark','1');
+
+// Eyebrow rotation
+const ey1 = document.getElementById('ey1'), ey2 = document.getElementById('ey2');
+let tog = false;
+setInterval(() => {
+  tog = !tog;
+  ey1.className = 'eyebrow-text ' + (tog ? 'hidden' : 'visible');
+  ey2.className = 'eyebrow-text ' + (tog ? 'visible' : 'hidden');
+}, 3200);
+
+// Scroll reveal
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Project accordion
+function toggleProject(el) {
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.project-item.open').forEach(i => i.classList.remove('open'));
+  document.querySelectorAll('.project-toggle').forEach(t => t.textContent = '+ more');
+  if (!wasOpen) {
+    el.classList.add('open');
+    el.querySelector('.project-toggle').textContent = '− less';
+  }
+}
+
+// Fire scroll reveal
+const fire = document.getElementById('fire');
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      fire.classList.add('lit');
+      setTimeout(() => fire.classList.add('blazing'), 600);
+    } else {
+      fire.classList.remove('blazing');
+      setTimeout(() => fire.classList.remove('lit'), 400);
+    }
+  });
+}, { threshold: 0.5 }).observe(fire);
+
+// Dots animation
+const dotsEl = document.getElementById('dots');
+let d = 0;
+const dotAnim = setInterval(() => { d = (d+1)%4; dotsEl.textContent = '.'.repeat(d||1); }, 400);
+
+// Utilities
+function stripHtml(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html || '';
+  return (tmp.textContent || tmp.innerText || '').replace(/\s+/g, ' ').trim();
+}
+function truncate(str, n) {
+  if (!str || str.length <= n) return str;
+  return str.slice(0, n).replace(/\s\S*$/, '') + '…';
+}
+function fmtDate(str) {
+  return new Date(str).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
+}
+
+// Render publications
+function renderPubs(items) {
+  clearInterval(dotAnim);
+  const list = document.getElementById('pub-list');
+  if (!items.length) { list.innerHTML = '<div class="pub-loading">nothing yet</div>'; return; }
+  list.innerHTML = items.slice(0, 8).map(p => `
+    <a class="pub-item" href="${p.url}" target="_blank" rel="noopener">
+      <span class="pub-type">${p.type}</span>
+      <span class="pub-title">${p.title}</span>
+      ${p.desc ? `<span class="pub-desc">${p.desc}</span>` : ''}
+      <span class="pub-date">${p.date}</span>
+    </a>`).join('');
+}
+
+// Render projects from sheet — groups by optional 'type' column
+function renderProjects(rows) {
+  if (!rows || !rows.length) return;
+  let html = '';
+  let lastType = null;
+  rows.forEach(r => {
+    const type = (r.type || '').trim().toLowerCase();
+    if (type && type !== lastType) {
+      if (lastType !== null) {
+        html += `<div class="project-separator">${r.type}</div>`;
+      }
+      lastType = type;
+    }
+    html += `
+    <div class="project-item" onclick="toggleProject(this)">
+      <div class="project-header">
+        <div class="project-what">${r.what || ''} <span class="project-toggle">+ more</span></div>
+        <div class="project-date">${r.date || ''}</div>
+        <div class="project-why">${r.why || ''}</div>
+      </div>
+      <div class="project-expand"><div class="project-detail-grid">
+        <div><div class="project-detail-label">Outcome</div><div class="project-detail-val">${r.outcome || ''}</div></div>
+        <div><div class="project-detail-label">${r.label2 || 'Notes'}</div><div class="project-detail-val">${r.val2 || '—'}</div></div>
+      </div></div>
+    </div>`;
+  });
+  document.getElementById('project-list').innerHTML = html;
+}
+
+// Fetch everything
+async function fetchFeeds() {
+  const proxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
+  const results = [];
+
+  if (SHEET_URL) {
+    try {
+      const r = await fetch(SHEET_URL);
+      const text = await r.text();
+      const lines = text.trim().split('\n');
+      const headers = lines[0].split(',').map(h => h.trim().replace(/"/g,'').toLowerCase());
+      const rows = lines.slice(1).map(line => {
+        const vals = line.split(',').map(v => v.trim().replace(/"/g,''));
+        const obj = {};
+        headers.forEach((h,i) => obj[h] = vals[i] || '');
+        return obj;
+      });
+      renderProjects(rows);
+    } catch(e) { console.warn('Sheet fetch failed', e); }
+  }
+
+  try {
+    const r = await fetch(proxy + encodeURIComponent(`https://buttondown.com/${BUTTONDOWN}/rss`));
+    const data = await r.json();
+    if (data.items) data.items.slice(0, 6).forEach(i => results.push({
+      type: 'letter',
+      title: i.title,
+      desc: truncate(stripHtml(i.description || i.content || ''), 120),
+      date: fmtDate(i.pubDate),
+      url: i.link
+    }));
+  } catch(e) { console.warn('Buttondown fetch failed', e); }
+
+  if (YT_CHANNEL) {
+    try {
+      const r = await fetch(proxy + encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL}`));
+      const data = await r.json();
+      if (data.items) data.items.slice(0, 4).forEach(i => results.push({
+        type: 'video',
+        title: i.title,
+        desc: truncate(stripHtml(i.description || ''), 120),
+        date: fmtDate(i.pubDate),
+        url: i.link
+      }));
+    } catch(e) { console.warn('YouTube fetch failed', e); }
+  }
+
+  results.sort((a,b) => new Date(b.date) - new Date(a.date));
+  renderPubs(results);
+}
+
+fetchFeeds();
+</script>
+</body>
+</html>
