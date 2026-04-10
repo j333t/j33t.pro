@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>J33T — Systems Architect</title>
-<meta name="description" content="I'd rather help you avoid the expensive problem than solve it. Systems architect based in Mumbai, designing systems that take businesses places." />
+<meta name="description" content="I'd rather help you avoid the expensive problem before it needs solving. Systems architect based in Mumbai, designing systems that take businesses places." />
 <meta name="author" content="Jeet Shah" />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://j33t.pro/" />
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://j33t.pro/" />
 <meta property="og:title" content="J33T — Systems Architect" />
-<meta property="og:description" content="I'd rather help you avoid the expensive problem than solve it." />
+<meta property="og:description" content="I'd rather help you avoid the expensive problem before it needs solving." />
 <meta property="og:image" content="https://j33t.pro/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -21,7 +21,7 @@
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="J33T — Systems Architect" />
-<meta name="twitter:description" content="I'd rather help you avoid the expensive problem than solve it." />
+<meta name="twitter:description" content="I'd rather help you avoid the expensive problem before it needs solving." />
 <meta name="twitter:image" content="https://j33t.pro/og-image.png" />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.png" />
@@ -59,34 +59,26 @@ html,body{background:#F7F4F3;}
 html:has(#outer[data-dark="1"]),body:has(#outer[data-dark="1"]){background:#0e0e0c;}
 ::selection{background:var(--green);color:#fff;}
 
-/* custom cursor — desktop only */
+/* custom cursor */
 #cur{display:none;}
 @media(pointer:fine){
   body:not(.has-selection) *{cursor:none!important;}
   #cur{
-    display:block;
-    position:fixed;top:0;left:0;width:14px;height:14px;
-    pointer-events:none;z-index:9999;
-    transform:translate(-50%,-50%);
-    opacity:0;
-    transition:opacity 0.15s;
+    display:block;position:fixed;top:0;left:0;width:14px;height:14px;
+    pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+    opacity:0;transition:opacity 0.15s;
   }
   #cur svg{display:block;width:14px;height:14px;overflow:visible;transition:transform 0.08s ease;}
   .has-selection #cur{opacity:0!important;}
 }
 
 /* scroll progress */
-#prog{
-  position:fixed;top:0;left:0;height:1px;width:100%;
-  background:var(--green);transform-origin:left;transform:scaleX(0);
-  z-index:1000;transition:transform 0.05s linear;
-}
+#prog{position:fixed;top:0;left:0;height:1px;width:100%;background:var(--green);transform-origin:left;transform:scaleX(0);z-index:1000;transition:transform 0.05s linear;}
 
 #outer{
   --bg:#F7F4F3;--text:#000100;--text-muted:#4a4a48;--text-hint:#999993;
   --border:rgba(0,1,0,0.1);--border-med:rgba(0,1,0,0.2);--surface:#edeae8;
-  background:var(--bg);color:var(--text);
-  min-height:100vh;width:100%;
+  background:var(--bg);color:var(--text);min-height:100vh;width:100%;
   transition:background 0.3s,color 0.3s;
 }
 #outer[data-dark="1"]{
@@ -94,27 +86,12 @@ html:has(#outer[data-dark="1"]),body:has(#outer[data-dark="1"]){background:#0e0e
   --border:rgba(240,237,232,0.1);--border-med:rgba(240,237,232,0.2);--surface:#1a1a16;
 }
 
-.site{font-family:'Instrument Sans',sans-serif;font-size:18px;max-width:680px;margin:0 auto;padding:0 1.5rem 4rem;}
+.site{font-family:'Instrument Sans',sans-serif;font-size:18px;max-width:680px;margin:0 auto;padding:0 1.5rem 4rem;padding-top:12rem;}
 
-/* NAV — fixed, shrinks on scroll */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:1.5rem 0;
-  background:transparent;
-  transition:padding 0.3s var(--ease),background 0.3s,border-color 0.3s;
-  border-bottom:0.5px solid transparent;
-}
-nav.scrolled{
-  padding:0.9rem 0;
-  background:color-mix(in srgb,var(--bg) 88%,transparent);
-  border-bottom-color:var(--border);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-}
-.nav-inner{
-  max-width:680px;margin:0 auto;padding:0 1.5rem;
-  display:flex;justify-content:space-between;align-items:center;
-}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.5rem 0;background:transparent;transition:padding 0.3s var(--ease),background 0.3s,border-color 0.3s;border-bottom:0.5px solid transparent;}
+nav.scrolled{padding:0.9rem 0;background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom-color:var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.nav-inner{max-width:680px;margin:0 auto;padding:0 1.5rem;display:flex;justify-content:space-between;align-items:center;}
 .nav-logo{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;letter-spacing:-0.02em;color:var(--text);}
 .nav-cursor{color:var(--green);animation:blink 1s step-end infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -124,9 +101,6 @@ nav.scrolled{
 .theme-btn:hover{color:var(--text-muted);}
 .nav-cta a{font-size:14px;color:var(--text-muted);text-decoration:none;border-bottom:0.5px solid var(--border-med);padding-bottom:1px;transition:color 0.2s;}
 .nav-cta a:hover{color:var(--text);}
-
-/* push content below fixed nav */
-.site{padding-top:12rem;}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.65s var(--ease),transform 0.65s var(--ease);}
@@ -149,12 +123,11 @@ nav.scrolled{
 .section-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);text-decoration:none;letter-spacing:0.06em;margin-left:auto;transition:color 0.2s;}
 .section-link:hover{color:var(--text-muted);}
 
-/* LIVE DOT */
-.work-label-wrap{position:relative;display:inline-flex;align-items:center;gap:0.5rem;cursor:default;}
-.work-tooltip{position:absolute;bottom:calc(100% + 6px);left:0;background:var(--surface);border:0.5px solid var(--border-med);border-radius:4px;padding:4px 8px;font-size:11px;white-space:nowrap;color:var(--text-muted);opacity:0;transform:translateY(4px);transition:opacity 0.2s,transform 0.2s;pointer-events:none;letter-spacing:0.02em;text-transform:none;z-index:10;}
-.work-label-wrap:hover .work-tooltip{opacity:1;transform:translateY(0);}
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--red-live);animation:livepulse 1.8s ease-in-out infinite;display:inline-block;flex-shrink:0;}
+/* LIVE DOT + always-visible label */
+.work-label-wrap{display:inline-flex;align-items:center;gap:0.5rem;cursor:default;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--red-live);animation:livepulse 1.8s ease-in-out infinite;display:inline-block;flex-shrink:0;position:relative;top:0;}
 @keyframes livepulse{0%,100%{opacity:1}50%{opacity:0.25}}
+.live-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.06em;color:var(--text-hint);text-transform:none;opacity:0.7;}
 
 /* PROJECTS */
 .projects{margin-bottom:5rem;}
@@ -173,17 +146,7 @@ nav.scrolled{
 .project-detail-grid{padding:0 0 1rem;display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
 .project-detail-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-hint);margin-bottom:4px;}
 .project-detail-val{font-size:11px;color:var(--text-muted);line-height:1.5;}
-
-.project-separator{
-  padding:0.67rem 0;
-  border-top:0.5px solid var(--border);
-  font-family:'DM Mono',monospace;
-  font-size:9px;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:var(--text-hint);
-  opacity:0.6;
-}
+.project-separator{padding:0.67rem 0;border-top:0.5px solid var(--border);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-hint);opacity:0.6;}
 .craftycrow-note{padding:1rem 0;border-top:0.5px solid var(--border);font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);letter-spacing:0.04em;}
 .craftycrow-note a{color:var(--green);text-decoration:none;opacity:0.85;transition:opacity 0.2s;}
 .craftycrow-note a:hover{opacity:1;}
@@ -208,7 +171,7 @@ nav.scrolled{
 .testimonial-quote{font-family:'DM Serif Display',serif;font-size:18px;line-height:1.7;font-style:italic;color:var(--text);margin-bottom:0.67rem;}
 .testimonial-source{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);letter-spacing:0.05em;}
 
-/* EDITORIAL / PERSONAL */
+/* EDITORIAL */
 .editorial{margin-bottom:5rem;}
 .editorial-heading{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;line-height:1.3;color:var(--text);margin-bottom:1.5rem;}
 .editorial-body{color:var(--text-muted);line-height:1.7;font-size:14px;}
@@ -222,7 +185,7 @@ nav.scrolled{
 
 /* FOOTER */
 .footer{border-top:0.5px solid var(--border);padding-top:1.5rem;display:flex;flex-direction:column;gap:1.5rem;}
-.footer-top{display:flex;justify-content:space-between;align-items:center;}
+.footer-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
 .footer-left{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);letter-spacing:0.06em;}
 .footer-links{display:flex;gap:1rem;flex-wrap:wrap;justify-content:flex-end;}
 .footer-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
@@ -249,7 +212,7 @@ nav.scrolled{
 <noscript>
 <div style="max-width:680px;margin:0 auto;padding:2rem;font-family:sans-serif;line-height:1.7;color:#000100;">
   <h1>J33T — Systems Architect</h1>
-  <p>I'd rather help you avoid the expensive problem than solve it.</p>
+  <p>I'd rather help you avoid the expensive problem before it needs solving.</p>
   <p>I design systems that take businesses places.</p>
   <h2>Work</h2>
   <ul>
@@ -259,22 +222,19 @@ nav.scrolled{
     <li><strong>Nexus checker for US state tax filings (2022)</strong> — Logic-driven Excel. Instant answers on state filing obligations.</li>
     <li><strong>Daily sales reporting pipeline (2023)</strong> — Form to Looker Studio to scheduled PDF.</li>
   </ul>
-  <h2>What people say</h2>
+  <!-- <h2>What people say</h2>
   <blockquote>"Discussing with Jeet was a huge bonus — I probably wouldn't have been able to afford him otherwise."</blockquote>
   <blockquote>"Deep interest in problem solving in general. Not just Excel — the way he thinks about problems is the thing."</blockquote>
   <blockquote>"Well structured, customised as per needs. Time and effort savings: 50%." — DGM Finance</blockquote>
   <h2>Contact</h2>
-  <p>Tell me what you're building, or what's breaking in your business.</p>
-  <p>Also building <a href="https://craftycrow.co">craftycrow.co</a></p>
-</div>
+  <p>Tell me what you're building, or what's breaking in your business. see more at  <a href="https://craftycrow.co">craftycrow.co</a></p>
+</div> -->
 </noscript>
 
-<!-- scroll progress -->
 <div id="prog" aria-hidden="true"></div>
 
 <div id="outer">
 
-<!-- custom cursor — inside #outer so var(--text) resolves -->
 <div id="cur" aria-hidden="true">
   <svg viewBox="-8 -8 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <line x1="-6" y1="0" x2="6" y2="0" stroke="var(--text)" stroke-width="1.8" stroke-linecap="square"/>
@@ -290,7 +250,7 @@ nav.scrolled{
     </div>
     <div class="nav-right">
       <button class="theme-btn" id="themeBtn" title="toggle dark mode">◐</button>
-      <div class="nav-cta"><a href="/cdn-cgi/l/email-protection#4e242b2b3a0e247d7d3a603e3c21">let's talk</a></div>
+      <div class="nav-cta"><a href="https://cal.com/j33tx" target="_blank" rel="noopener">let's talk</a></div>
     </div>
   </div>
 </nav>
@@ -302,7 +262,7 @@ nav.scrolled{
       <span class="eyebrow-text visible" id="ey1">Systems Architect</span>
       <span class="eyebrow-text hidden" id="ey2">simplifying the complex</span>
     </div>
-    <h1 class="hero-headline">I'd rather help you avoid the expensive problem <em>than solve it.</em></h1>
+    <h1 class="hero-headline">I'd rather help you <em>avoid the expensive</em> problem before it needs solving.</h1>
     <p class="hero-sub">I design systems that take businesses places.</p>
   </section>
 
@@ -311,7 +271,7 @@ nav.scrolled{
       <span class="work-label-wrap">
         Work
         <span class="live-dot"></span>
-        <span class="work-tooltip">streamed live from a Google Sheet</span>
+        <span class="live-label">streaming live from a google sheet</span>
       </span>
     </div>
 
@@ -378,7 +338,7 @@ nav.scrolled{
     </div>
 
     <div class="craftycrow-note">
-      also building <a href="https://craftycrow.co" target="_blank">craftycrow.co</a>
+      see more at  <a href="https://craftycrow.co" target="_blank">craftycrow.co</a>
     </div>
   </section>
 
@@ -394,9 +354,9 @@ nav.scrolled{
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- <div class="divider"></div> -->
 
-  <section class="testimonials reveal">
+  <!-- <section class="testimonials reveal">
     <div class="section-label">What people say</div>
     <div class="testimonial">
       <div class="testimonial-quote">"Discussing with Jeet was a huge bonus — I probably wouldn't have been able to afford him otherwise."</div>
@@ -410,7 +370,7 @@ nav.scrolled{
       <div class="testimonial-quote">"Well structured, customised as per needs. Time &amp; effort savings: 50%."</div>
       <div class="testimonial-source">DGM Finance, Dec 2022</div>
     </div>
-  </section>
+  </section> -->
 
   <div class="divider"></div>
 
@@ -421,10 +381,10 @@ nav.scrolled{
       <p>It's not coaching — coaches let you find your own answers. It's not consulting — consultants diagnose systems, not people. It's not training — trainers transfer knowledge.</p>
       <p>It's closer to what a great editor does for a writer. You can't see what's missing because you're too close to your own work.</p>
       <p>Sometimes one small thing unlocks it all.</p>
-      <p>Tell me what you're building, or what's breaking in your business.</p>
+      <p>Tell me what you're building, or what's breaking in your business — or where you think you're leaving something on the table.</p>
     </div>
     <div class="editorial-cta">
-      <a href="mailto:connect@j33t.pro?body=Hi%20Jeet%2C%0D%0A">Let's talk »</a>
+      <a href="https://cal.com/j33tx" target="_blank" rel="noopener">Let's talk »</a>
     </div>
   </section>
 
@@ -433,8 +393,7 @@ nav.scrolled{
       <div class="footer-left"><span>j33t.pro</span></div>
       <div class="footer-links">
         <a href="https://craftycrow.co" target="_blank">craftycrow.co ↗</a>
-        <a href="#">experiments</a>
-        <a href="mailto:connect@j33t.pro?body=Hi%20Jeet%2C%0D%0A" class="footer-contact">email</a>
+        <a href="mailto:connect@j33t.pro" class="footer-contact">email</a>
         <a href="https://wa.me/919920221230" target="_blank" class="footer-contact">whatsapp</a>
       </div>
     </div>
@@ -446,14 +405,11 @@ nav.scrolled{
 </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── CONFIG ────────────────────────────────────────────────
-const SHEET_URL  = '';        // Google Sheet CSV publish URL
-const BUTTONDOWN = 'j33t';    // Buttondown username
-const YT_CHANNEL = 'UCQRmxBu9Cji-T4ZI9C70wiw';        // YouTube channel ID
-// ─────────────────────────────────────────────────────────
+<script>
+const SHEET_URL  = 'https://docs.google.com/spreadsheets/d/1G3cyBvVw1xCE2gX0_FXary_iYuMxMsK_V2u-4w6jTFY/gviz/tq?tqx=out:csv';
+const BUTTONDOWN = 'j33t';
+const YT_CHANNEL = 'UCQRmxBu9Cji-T4ZI9C70wiw';
 
-// Custom cursor (desktop only)
 const cur = document.getElementById('cur');
 if (cur && window.matchMedia('(pointer:fine)').matches) {
   let mx = window.innerWidth/2, my = window.innerHeight/2;
@@ -472,14 +428,18 @@ if (cur && window.matchMedia('(pointer:fine)').matches) {
   document.addEventListener('mouseup', () => {
     if(curSvg) { curSvg.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)'; curSvg.style.transform = 'rotate(0deg)'; }
   });
-
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest('a, button')) curSvg.style.transform = 'scale(1.5)';
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest('a, button')) curSvg.style.transform = 'scale(1)';
+  });
   if (/Edg\//.test(navigator.userAgent)) {
     document.addEventListener('selectionchange', () => {
       const sel = document.getSelection();
       document.body.classList.toggle('has-selection', !!(sel && sel.toString().length > 0));
     });
   }
-
   (function tick() {
     cx += (mx - cx) * 0.45;
     cy += (my - cy) * 0.45;
@@ -489,20 +449,17 @@ if (cur && window.matchMedia('(pointer:fine)').matches) {
   })();
 }
 
-// Scroll progress
 const prog = document.getElementById('prog');
 window.addEventListener('scroll', () => {
   const h = document.documentElement.scrollHeight - window.innerHeight;
   if (h > 0) prog.style.transform = `scaleX(${Math.min(window.scrollY / h, 1)})`;
 }, { passive: true });
 
-// Fixed nav shrink
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   navEl.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-// Dark mode
 const outer = document.getElementById('outer');
 document.getElementById('themeBtn').onclick = () => {
   const dark = outer.getAttribute('data-dark') === '1';
@@ -511,7 +468,6 @@ document.getElementById('themeBtn').onclick = () => {
 };
 if (localStorage.getItem('j33t-dark') === '1') outer.setAttribute('data-dark','1');
 
-// Eyebrow rotation
 const ey1 = document.getElementById('ey1'), ey2 = document.getElementById('ey2');
 let tog = false;
 setInterval(() => {
@@ -520,7 +476,6 @@ setInterval(() => {
   ey2.className = 'eyebrow-text ' + (tog ? 'visible' : 'hidden');
 }, 3200);
 
-// Scroll reveal
 const revealObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
@@ -528,7 +483,6 @@ const revealObs = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-// Project accordion
 function toggleProject(el) {
   const wasOpen = el.classList.contains('open');
   document.querySelectorAll('.project-item.open').forEach(i => i.classList.remove('open'));
@@ -539,7 +493,6 @@ function toggleProject(el) {
   }
 }
 
-// Fire scroll reveal
 const fire = document.getElementById('fire');
 fire.addEventListener('animationend', e => {
   if (e.animationName === 'ignite') fire.classList.add('blazing');
@@ -556,12 +509,10 @@ new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 }).observe(fire);
 
-// Dots animation
 const dotsEl = document.getElementById('dots');
 let d = 0;
 const dotAnim = setInterval(() => { d = (d+1)%4; dotsEl.textContent = '.'.repeat(d||1); }, 400);
 
-// Utilities
 function stripHtml(html) {
   const tmp = document.createElement('div');
   tmp.innerHTML = html || '';
@@ -575,7 +526,6 @@ function fmtDate(str) {
   return new Date(str).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
 }
 
-// Render publications
 function renderPubs(items) {
   clearInterval(dotAnim);
   const list = document.getElementById('pub-list');
@@ -589,7 +539,11 @@ function renderPubs(items) {
     </a>`).join('');
 }
 
-// Render projects from sheet — groups by optional 'type' column
+function linkify(text) {
+  if (!text) return '';
+  return text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none;border-bottom:0.5px solid var(--green);">$1</a>');
+}
+
 function renderProjects(rows) {
   if (!rows || !rows.length) return;
   let html = '';
@@ -597,28 +551,25 @@ function renderProjects(rows) {
   rows.forEach(r => {
     const type = (r.type || '').trim().toLowerCase();
     if (type && type !== lastType) {
-      if (lastType !== null) {
-        html += `<div class="project-separator">${r.type}</div>`;
-      }
+      html += `<div class="project-separator">${r.type}</div>`;
       lastType = type;
     }
     html += `
-    <div class="project-item" onclick="toggleProject(this)">
+    <div class="project-item" ${(r.outcome || r.val2 || r.image) ? 'onclick="toggleProject(this)"' : 'style="pointer-events:none;cursor:default"'}>
       <div class="project-header">
-        <div class="project-what">${r.what || ''} <span class="project-toggle">+ more</span></div>
+        <div class="project-what">${r.what || ''}${(r.outcome || r.val2 || r.image) ? ' <span class="project-toggle">+ more</span>' : ''}</div>
         <div class="project-date">${r.date || ''}</div>
         <div class="project-why">${r.why || ''}</div>
       </div>
       <div class="project-expand"><div class="project-detail-grid">
-        <div><div class="project-detail-label">Outcome</div><div class="project-detail-val">${r.outcome || ''}</div></div>
-        <div><div class="project-detail-label">${r.label2 || 'Notes'}</div><div class="project-detail-val">${r.val2 || '—'}</div></div>
+        ${r.outcome ? `<div><div class="project-detail-label">Outcome</div><div class="project-detail-val">${linkify(r.outcome)}</div></div>` : ''}
+        ${r.val2 ? `<div><div class="project-detail-label">${r.label2 || 'Notes'}</div><div class="project-detail-val">${linkify(r.val2)}</div></div>` : ''}
       </div>${r.image ? `<img src="${r.image}" loading="lazy" style="margin-top:0.75rem;width:100%;border-radius:4px;display:block;" />` : ''}</div>
     </div>`;
   });
   document.getElementById('project-list').innerHTML = html;
 }
 
-// Fetch everything
 async function fetchFeeds() {
   const proxy = 'https://api.rss2json.com/v1/api.json?rss_url=';
   const results = [];
@@ -627,15 +578,30 @@ async function fetchFeeds() {
     try {
       const r = await fetch(SHEET_URL);
       const text = await r.text();
-      const lines = text.trim().split('\n');
-      const headers = lines[0].split(',').map(h => h.trim().replace(/"/g,'').toLowerCase());
-      const rows = lines.slice(1).map(line => {
-        const vals = line.split(',').map(v => v.trim().replace(/"/g,''));
-        const obj = {};
-        headers.forEach((h,i) => obj[h] = vals[i] || '');
-        return obj;
-      });
-      renderProjects(rows);
+      const parseCSV = raw => {
+      const rows = []; let cur = [], field = '', inQ = false;
+      for (let i = 0; i <= raw.length; i++) {
+        const ch = raw[i];
+        if (inQ) {
+          if (ch === '"' && raw[i+1] === '"') { field += '"'; i++; }
+          else if (ch === '"') inQ = false;
+          else field += ch;
+        } else if (ch === '"') { inQ = true; }
+        else if (ch === ',') { cur.push(field.trim()); field = ''; }
+        else if (ch === '\n' || ch === undefined) {
+          cur.push(field.trim()); rows.push(cur); cur = []; field = '';
+        } else if (ch !== '\r') { field += ch; }
+      }
+      return rows;
+    };
+    const rows = parseCSV(text.trim());
+    const headers = rows[0].map(h => h.replace(/^"|"$/g,'').toLowerCase());
+    const objs = rows.slice(1).filter(r => r.some(v => v)).map(vals => {
+      const obj = {};
+      headers.forEach((h,i) => obj[h] = (vals[i] || '').replace(/^"|"$/g,''));
+      return obj;
+    });
+    renderProjects(objs);
     } catch(e) { console.warn('Sheet fetch failed', e); }
   }
 
@@ -645,23 +611,14 @@ async function fetchFeeds() {
     const doc = new DOMParser().parseFromString(xml, 'text/xml');
     Array.from(doc.querySelectorAll('item')).slice(0, 6).forEach(item => {
       const get = tag => item.querySelector(tag)?.textContent?.trim() || '';
-      // extract content:encoded via regex — namespace selectors are unreliable cross-browser
       const itemXml = item.outerHTML || new XMLSerializer().serializeToString(item);
       const contentMatch = itemXml.match(/<content:encoded[^>]*>([\s\S]*?)<\/content:encoded>/i);
       const fullBody = contentMatch ? stripHtml(contentMatch[1].replace(/<!?\[CDATA\[|\]\]>/g,'')) : '';
       const preview = stripHtml(get('description'));
-      // use description if it's genuinely shorter than the full body (i.e. it's the real preview)
-      // otherwise truncate the body
       const desc = (preview && fullBody && preview.length < fullBody.length * 0.7)
         ? preview
         : truncate(fullBody || preview, 160);
-      results.push({
-        type: 'letter',
-        title: get('title'),
-        desc: desc,
-        date: fmtDate(get('pubDate')),
-        url: get('link')
-      });
+      results.push({ type: 'article', title: get('title'), desc, date: fmtDate(get('pubDate')), url: get('link') });
     });
   } catch(e) { console.warn('Buttondown fetch failed', e); }
 
@@ -670,11 +627,9 @@ async function fetchFeeds() {
       const r = await fetch(proxy + encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL}`));
       const data = await r.json();
       if (data.items) data.items.slice(0, 4).forEach(i => results.push({
-        type: 'video',
-        title: i.title,
+        type: 'video', title: i.title,
         desc: truncate(stripHtml(i.description || ''), 120),
-        date: fmtDate(i.pubDate),
-        url: i.link
+        date: fmtDate(i.pubDate), url: i.link
       }));
     } catch(e) { console.warn('YT fetch failed', e); }
   }
