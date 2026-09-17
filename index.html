@@ -161,7 +161,8 @@ nav.scrolled{padding:0.9rem 0;background:color-mix(in srgb,var(--bg) 88%,transpa
 .pub-item:hover .pub-desc{color:var(--text-muted);}
 .pub-item:hover .pub-date{color:var(--text-muted);}
 .pub-item:hover .pub-type{color:var(--text-muted);border-color:var(--border-med);}
-.pub-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-hint);border:0.5px solid var(--border);border-radius:3px;padding:2px 5px;white-space:nowrap;grid-row:1;margin-top:2px;transition:color 0.18s,border-color 0.18s;}
+.pub-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-hint);border:0.5px solid var(--border);border-radius:3px;padding:2px 5px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;grid-row:1;margin-top:2px;transition:color 0.18s,border-color 0.18s;}
+.pub-glyph{font-size:11px;}
 .pub-title{font-size:14px;color:var(--text-muted);line-height:1.5;grid-column:2;grid-row:1;transition:color 0.18s;}
 .pub-desc{font-size:14px;color:var(--text-hint);line-height:1.5;grid-column:2;grid-row:2;transition:color 0.18s;}
 .pub-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-hint);white-space:nowrap;grid-column:3;grid-row:1;transition:color 0.18s;}
@@ -426,6 +427,7 @@ if (cur && window.matchMedia('(pointer:fine)').matches) {
   document.addEventListener('mouseleave', () => { cur.style.opacity = '0'; visible = false; });
   document.addEventListener('mouseenter', () => { if (visible) cur.style.opacity = '1'; });
   const curSvg = cur.querySelector('svg');
+  const curLines = cur.querySelectorAll('line');
   document.addEventListener('mousedown', () => {
     if(curSvg) { curSvg.style.transition = 'transform 0.08s ease'; curSvg.style.transform = 'rotate(45deg)'; }
   });
@@ -433,10 +435,16 @@ if (cur && window.matchMedia('(pointer:fine)').matches) {
     if(curSvg) { curSvg.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)'; curSvg.style.transform = 'rotate(0deg)'; }
   });
   document.addEventListener('mouseover', e => {
-    if (e.target.closest('a, button')) curSvg.style.transform = 'scale(1.5)';
+    if (e.target.closest('a, button, .project-item')) {
+      curSvg.style.transform = 'scale(1.5)';
+      curLines.forEach(l => l.style.stroke = 'var(--green)');
+    }
   });
   document.addEventListener('mouseout', e => {
-    if (e.target.closest('a, button')) curSvg.style.transform = 'scale(1)';
+    if (e.target.closest('a, button, .project-item')) {
+      curSvg.style.transform = 'scale(1)';
+      curLines.forEach(l => l.style.stroke = 'var(--text)');
+    }
   });
   if (/Edg\//.test(navigator.userAgent)) {
     document.addEventListener('selectionchange', () => {
@@ -534,9 +542,18 @@ function renderPubs(items) {
   clearInterval(dotAnim);
   const list = document.getElementById('pub-list');
   if (!items.length) { list.innerHTML = '<div class="pub-loading">nothing yet</div>'; return; }
-  list.innerHTML = items.slice(0, 8).map(p => `
-    <a class="pub-item" href="${p.url}" target="_blank" rel="noopener">
-      <span class="pub-type">${p.type}</span>
+
+  const MAX_ITEMS = 8, MIN_VIDEOS = 3;
+  const sorted = items.slice().sort((a, b) => b.ts - a.ts);
+  const guaranteedVideos = sorted.filter(p => p.type === 'video').slice(0, MIN_VIDEOS);
+  const guaranteedUrls = new Set(guaranteedVideos.map(p => p.url));
+  const fillers = sorted.filter(p => !guaranteedUrls.has(p.url)).slice(0, MAX_ITEMS - guaranteedVideos.length);
+  const final = guaranteedVideos.concat(fillers).sort((a, b) => b.ts - a.ts);
+
+  const GLYPH = { video: '▶', article: '¶' };
+  list.innerHTML = final.map(p => `
+    <a class="pub-item pub-item--${p.type}" href="${p.url}" target="_blank" rel="noopener">
+      <span class="pub-type"><span class="pub-glyph">${GLYPH[p.type] || ''}</span>${p.type}</span>
       <span class="pub-title">${p.title}</span>
       ${p.desc ? `<span class="pub-desc">${p.desc}</span>` : ''}
       <span class="pub-date">${p.date}</span>
@@ -622,7 +639,7 @@ async function fetchFeeds() {
       const desc = (preview && fullBody && preview.length < fullBody.length * 0.7)
         ? preview
         : truncate(fullBody || preview, 160);
-      results.push({ type: 'article', title: get('title'), desc, date: fmtDate(get('pubDate')), url: get('link') });
+      results.push({ type: 'article', title: get('title'), desc, date: fmtDate(get('pubDate')), ts: new Date(get('pubDate')).getTime(), url: get('link') });
     });
   } catch(e) { console.warn('Buttondown fetch failed', e); }
 
@@ -633,7 +650,7 @@ async function fetchFeeds() {
       if (data.items) data.items.slice(0, 4).forEach(i => results.push({
         type: 'video', title: i.title,
         desc: truncate(stripHtml(i.description || ''), 120),
-        date: fmtDate(i.pubDate), url: i.link
+        date: fmtDate(i.pubDate), ts: new Date(i.pubDate).getTime(), url: i.link
       }));
     } catch(e) { console.warn('YT fetch failed', e); }
   }
